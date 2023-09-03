@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0ws3qcy714a3"]
+
+[ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/start_screen.tres" id="1_m0ism"]
+[ext_resource type="Script" path="res://scripts/start/menu_main.gd" id="2_1qbql"]
+
+[node name="Main" type="VBoxContainer"]
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 300.0
+theme = ExtResource("1_m0ism")
+script = ExtResource("2_1qbql")
+
+[node name="Start" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("1_m0ism")
+text = "Start"
+
+[node name="Settings" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("1_m0ism")
+text = "Settings"
+
+[node name="Exit" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("1_m0ism")
+text = "Exit
+"

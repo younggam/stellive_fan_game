@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://h044ey7agiyu"]
+
+[ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/start_screen.tres" id="1_towci"]
+[ext_resource type="Script" path="res://scripts/start/menu_start.gd" id="2_cjn24"]
+
+[node name="Start" type="VBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme = ExtResource("1_towci")
+script = ExtResource("2_cjn24")
+
+[node name="Continue" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Continue"
+
+[node name="NewGame" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "New Game"
+
+[node name="Join" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Join"
+
+[node name="Back" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Back"
