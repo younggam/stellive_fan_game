@@ -8,7 +8,7 @@ static var instance:Main:
 enum State{START_SCREEN,HOST,CLIENT}
 
 const _states={
-	State.START_SCREEN:"res://scenes/start/start_screen.tscn",
+	State.START_SCREEN:"res://scenes/start/screen.tscn",
 	State.HOST:"res://scenes/player.tscn",
 	State.CLIENT:"res://scenes/player.tscn"
 }
@@ -83,3 +83,6 @@ func cancel_exit():
 func exit():
 	on_exit.emit()
 	get_tree().quit()
+	
+func toggle_settings():
+	$Settings.show_or_hide()

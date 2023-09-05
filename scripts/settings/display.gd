@@ -7,7 +7,7 @@ signal window_mode(section,key,value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_parent().register(SECTION,self,[window_mode])
+	get_parent().get_parent().register(SECTION,self,[window_mode])
 	$WindowModeOption.get_popup().index_pressed.connect(on_window_mode_changed)
 
 func initialize(file):

@@ -1,4 +1,4 @@
-extends TabContainer
+extends VBoxContainer
 class_name Settings
 
 enum Sections{DISPLAY}
@@ -14,6 +14,7 @@ var children={}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Back.pressed.connect(on_back_button)
 	Main.instance.on_exit.connect(func(): file.save(file_path))
 	if file.load(file_path):
 		file.save(file_path)
@@ -28,3 +29,12 @@ func register(section,child,signals):
 	children[section]=child
 	for s in signals:
 		s.connect(file.set_value)
+		
+func show_or_hide():
+	if visible:
+		hide()
+	else:
+		show()
+	
+func on_back_button():
+	hide()

@@ -2,7 +2,7 @@ extends Control
 
 const sub_menus={
 	main=preload("res://scenes/start/menu_main.tscn"),
-	start=preload("res://scenes/start/menu_start.tscn")
+	start=preload("res://scenes/start/menu_start.tscn"),
 }
 
 @onready var _current_sub_menu=$Main

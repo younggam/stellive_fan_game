@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdmoxidr5qrdu"]
+[gd_scene load_steps=5 format=3 uid="uid://cdmoxidr5qrdu"]
 
 [ext_resource type="Texture2D" uid="uid://b1fip0fj7yfjk" path="res://textures/background.png" id="1_3mj64"]
 [ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/start_screen.tres" id="2_unhcx"]
 [ext_resource type="PackedScene" uid="uid://c0ws3qcy714a3" path="res://scenes/start/menu_main.tscn" id="3_lh7og"]
 [ext_resource type="Script" path="res://scripts/start/menu.gd" id="3_vq1o2"]
-[ext_resource type="Script" path="res://scripts/start/menu_settings.gd" id="5_iwhfc"]
-[ext_resource type="Script" path="res://scripts/start/menu_settings_display.gd" id="6_ogmfh"]
 
 [node name="StartScreen" type="Control"]
 layout_mode = 3
@@ -68,46 +66,6 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
-
-[node name="Settings" type="TabContainer" parent="Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -240.0
-offset_right = 240.0
-offset_bottom = 240.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_unhcx")
-script = ExtResource("5_iwhfc")
-
-[node name="Display" type="GridContainer" parent="Menu/Settings"]
-layout_mode = 2
-theme = ExtResource("2_unhcx")
-columns = 2
-script = ExtResource("6_ogmfh")
-
-[node name="WindowMode" type="Label" parent="Menu/Settings/Display"]
-layout_mode = 2
-theme = ExtResource("2_unhcx")
-theme_type_variation = &"LabelItem"
-text = "Window Mode"
-
-[node name="WindowModeOption" type="OptionButton" parent="Menu/Settings/Display"]
-layout_mode = 2
-theme = ExtResource("2_unhcx")
-item_count = 3
-selected = 0
-popup/item_0/text = "Exclusive Fullscreen"
-popup/item_0/id = 0
-popup/item_1/text = "Fullscreen"
-popup/item_1/id = 1
-popup/item_2/text = "Windowed"
-popup/item_2/id = 2
 
 [node name="Version" type="Label" parent="."]
 layout_mode = 1

@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b42wuh8c6i0mu"]
+[gd_scene load_steps=8 format=3 uid="uid://b42wuh8c6i0mu"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_w3yw5"]
-[ext_resource type="PackedScene" uid="uid://cdmoxidr5qrdu" path="res://scenes/start/start_screen.tscn" id="2_kh4yu"]
+[ext_resource type="PackedScene" uid="uid://cdmoxidr5qrdu" path="res://scenes/start/screen.tscn" id="2_kh4yu"]
 [ext_resource type="Script" path="res://scripts/exit_dialog.gd" id="3_c5h3y"]
 [ext_resource type="Texture2D" uid="uid://blu6pb5d3wjf5" path="res://textures/empty.png" id="3_sbdtq"]
 [ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/start_screen.tres" id="4_o8e0u"]
+[ext_resource type="Script" path="res://scripts/settings/manager.gd" id="6_bc8o1"]
+[ext_resource type="Script" path="res://scripts/settings/display.gd" id="7_eycec"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_w3yw5")
@@ -46,3 +48,55 @@ grow_vertical = 2
 theme = ExtResource("4_o8e0u")
 theme_type_variation = &"HeaderLarge"
 text = "Loading..."
+
+[node name="Settings" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -180.0
+offset_right = 240.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("6_bc8o1")
+
+[node name="TabContainer" type="TabContainer" parent="Settings"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+theme = ExtResource("4_o8e0u")
+
+[node name="Display" type="GridContainer" parent="Settings/TabContainer"]
+layout_mode = 2
+theme = ExtResource("4_o8e0u")
+columns = 2
+script = ExtResource("7_eycec")
+
+[node name="WindowMode" type="Label" parent="Settings/TabContainer/Display"]
+layout_mode = 2
+theme = ExtResource("4_o8e0u")
+theme_type_variation = &"LabelItem"
+text = "Window Mode"
+
+[node name="WindowModeOption" type="OptionButton" parent="Settings/TabContainer/Display"]
+layout_mode = 2
+theme = ExtResource("4_o8e0u")
+item_count = 3
+selected = 0
+popup/item_0/text = "Exclusive Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Windowed"
+popup/item_2/id = 2
+
+[node name="Back" type="Button" parent="Settings"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("4_o8e0u")
+text = "Back
+"
