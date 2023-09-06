@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://h044ey7agiyu"]
 
-[ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/start_screen.tres" id="1_towci"]
+[ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="1_wtphm"]
 [ext_resource type="Script" path="res://scripts/start/menu_start.gd" id="2_cjn24"]
 
 [node name="Start" type="VBoxContainer"]
@@ -11,7 +11,7 @@ offset_left = -160.0
 offset_right = 160.0
 offset_bottom = 40.0
 grow_horizontal = 2
-theme = ExtResource("1_towci")
+theme = ExtResource("1_wtphm")
 script = ExtResource("2_cjn24")
 
 [node name="Continue" type="Button" parent="."]

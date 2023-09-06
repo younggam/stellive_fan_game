@@ -9,7 +9,7 @@ enum State{START_SCREEN,HOST,CLIENT}
 
 const _states={
 	State.START_SCREEN:"res://scenes/start/screen.tscn",
-	State.HOST:"res://scenes/player.tscn",
+	State.HOST:"res://scenes/game/game.tscn",
 	State.CLIENT:"res://scenes/player.tscn"
 }
 
@@ -27,6 +27,8 @@ var _exit_requested=false
 signal on_exit_requested()
 signal on_exit_canceled()
 signal on_exit()
+
+@onready var _settings=$CanvasLayer/Settings
 
 func _enter_tree():
 	_instance=self
@@ -85,4 +87,4 @@ func exit():
 	get_tree().quit()
 	
 func toggle_settings():
-	$Settings.show_or_hide()
+	_settings.show_or_hide()

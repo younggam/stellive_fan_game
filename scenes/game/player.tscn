@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c32o8g4xj0g30"]
+
+[ext_resource type="Texture2D" uid="uid://c5li01kjfkdsn" path="res://textures/player.png" id="1_a3xks"]
+[ext_resource type="PhysicsMaterial" uid="uid://mvlsr18hilpx" path="res://materials/physics/entity.tres" id="1_uuw8h"]
+[ext_resource type="Script" path="res://scripts/game/player.gd" id="2_4h1m7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kbbvt"]
+radius = 16.0
+
+[node name="Player" type="RigidBody2D"]
+physics_material_override = ExtResource("1_uuw8h")
+gravity_scale = 0.0
+can_sleep = false
+lock_rotation = true
+script = ExtResource("2_4h1m7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a3xks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kbbvt")

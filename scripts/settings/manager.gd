@@ -12,6 +12,8 @@ var file_path="user://settings.cfg"
 
 var children={}
 
+var prev_escape=false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Back.pressed.connect(on_back_button)
@@ -23,6 +25,16 @@ func _ready():
 	for section in file.get_sections():
 		if children.has(section):
 			children[section].initialize(file)
+
+func _input(event):
+	if event is InputEventKey and event.keycode == KEY_ESCAPE:
+		if event.pressed:
+			if prev_escape==false&&visible:
+				hide()
+				get_viewport().set_input_as_handled()
+			prev_escape=true
+		else:
+			prev_escape=false
 
 
 func register(section,child,signals):

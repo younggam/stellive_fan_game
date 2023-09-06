@@ -1,0 +1,239 @@
+[gd_scene load_steps=15 format=3 uid="uid://deyqbxlgd5u81"]
+
+[ext_resource type="Script" path="res://scripts/game/game.gd" id="1_7jm7b"]
+[ext_resource type="Texture2D" uid="uid://dac5u2sntl6ab" path="res://textures/map.png" id="2_2hqom"]
+[ext_resource type="Texture2D" uid="uid://8smmnrdkv8je" path="res://textures/world.png" id="3_uj7jw"]
+[ext_resource type="PhysicsMaterial" uid="uid://fkyx4cfcb88u" path="res://materials/physics/building.tres" id="4_7bb7x"]
+[ext_resource type="Texture2D" uid="uid://qtfu12a6a7i8" path="res://textures/wall.png" id="5_6csyg"]
+[ext_resource type="Texture2D" uid="uid://bmex8mabr61o8" path="res://textures/base.png" id="6_vywvk"]
+[ext_resource type="Texture2D" uid="uid://ct1q00gw6e5bv" path="res://textures/fan_cafe.png" id="7_nw166"]
+[ext_resource type="PackedScene" uid="uid://c32o8g4xj0g30" path="res://scenes/game/player.tscn" id="8_ylptw"]
+[ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="9_mk6le"]
+[ext_resource type="Script" path="res://scripts/game/menu.gd" id="9_x7d75"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vjind"]
+normal = Vector2(1, 2)
+distance = -204.8
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5j07r"]
+normal = Vector2(1, -2)
+distance = -204.8
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4iw23"]
+normal = Vector2(-1, -2)
+distance = -204.8
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lpd2r"]
+normal = Vector2(-1, 2)
+distance = -204.8
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_7jm7b")
+
+[node name="Map" type="Sprite2D" parent="."]
+texture = ExtResource("2_2hqom")
+
+[node name="World" type="Sprite2D" parent="Map"]
+position = Vector2(0, 1)
+texture = ExtResource("3_uj7jw")
+
+[node name="Bounds" type="StaticBody2D" parent="Map/World"]
+position = Vector2(0, -1)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = ExtResource("4_7bb7x")
+
+[node name="0" type="CollisionShape2D" parent="Map/World/Bounds"]
+position = Vector2(0, 1)
+shape = SubResource("WorldBoundaryShape2D_vjind")
+
+[node name="1" type="CollisionShape2D" parent="Map/World/Bounds"]
+shape = SubResource("WorldBoundaryShape2D_5j07r")
+
+[node name="2" type="CollisionShape2D" parent="Map/World/Bounds"]
+shape = SubResource("WorldBoundaryShape2D_4iw23")
+
+[node name="3" type="CollisionShape2D" parent="Map/World/Bounds"]
+shape = SubResource("WorldBoundaryShape2D_lpd2r")
+
+[node name="Wall" type="StaticBody2D" parent="Map"]
+position = Vector2(0, -304)
+collision_layer = 2
+collision_mask = 2
+physics_material_override = ExtResource("4_7bb7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/Wall"]
+texture = ExtResource("5_6csyg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/Wall"]
+polygon = PackedVector2Array(416, 0, 0, 208, -416, 0, -384, -16, 0, 176, 384, -16)
+
+[node name="PCs" type="Node2D" parent="Map"]
+
+[node name="0" type="StaticBody2D" parent="Map/PCs"]
+position = Vector2(-320, -255)
+collision_layer = 2
+collision_mask = 2
+physics_material_override = ExtResource("4_7bb7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/PCs/0"]
+texture = ExtResource("6_vywvk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/PCs/0"]
+polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
+
+[node name="1" type="StaticBody2D" parent="Map/PCs"]
+position = Vector2(-160, -176)
+collision_layer = 2
+collision_mask = 2
+physics_material_override = ExtResource("4_7bb7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/PCs/1"]
+texture = ExtResource("6_vywvk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/PCs/1"]
+polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
+
+[node name="2" type="StaticBody2D" parent="Map/PCs"]
+position = Vector2(0, -96)
+collision_layer = 2
+collision_mask = 2
+physics_material_override = ExtResource("4_7bb7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/PCs/2"]
+texture = ExtResource("6_vywvk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/PCs/2"]
+polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
+
+[node name="3" type="StaticBody2D" parent="Map/PCs"]
+position = Vector2(160, -176)
+collision_layer = 2
+collision_mask = 2
+physics_material_override = ExtResource("4_7bb7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/PCs/3"]
+texture = ExtResource("6_vywvk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/PCs/3"]
+polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
+
+[node name="4" type="StaticBody2D" parent="Map/PCs"]
+position = Vector2(320, -256)
+collision_layer = 2
+collision_mask = 2
+physics_material_override = ExtResource("4_7bb7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/PCs/4"]
+texture = ExtResource("6_vywvk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/PCs/4"]
+polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
+
+[node name="JustChattingTopicSearch" type="StaticBody2D" parent="Map"]
+position = Vector2(-512, 1)
+physics_material_override = ExtResource("4_7bb7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/JustChattingTopicSearch"]
+texture = ExtResource("6_vywvk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/JustChattingTopicSearch"]
+polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
+
+[node name="SingingPractice" type="StaticBody2D" parent="Map"]
+physics_material_override = ExtResource("4_7bb7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/SingingPractice"]
+texture = ExtResource("6_vywvk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/SingingPractice"]
+polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
+
+[node name="GameSearch" type="StaticBody2D" parent="Map"]
+position = Vector2(512, 0)
+physics_material_override = ExtResource("4_7bb7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/GameSearch"]
+texture = ExtResource("6_vywvk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/GameSearch"]
+polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
+
+[node name="FanCafe" type="StaticBody2D" parent="Map"]
+position = Vector2(0, 256)
+physics_material_override = ExtResource("4_7bb7x")
+
+[node name="FanCafe" type="Sprite2D" parent="Map/FanCafe"]
+texture = ExtResource("7_nw166")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/FanCafe"]
+texture = ExtResource("6_vywvk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/FanCafe"]
+polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
+
+[node name="Player" parent="." instance=ExtResource("8_ylptw")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -180.0
+offset_right = 240.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("9_x7d75")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Menu"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -150.0
+offset_right = 160.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_mk6le")
+
+[node name="Save" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Save"
+
+[node name="Settings" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Settings"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Exit
+"
+
+[node name="Back" type="Button" parent="CanvasLayer/Menu"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Back
+"
