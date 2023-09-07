@@ -3,7 +3,7 @@ extends ConfirmationDialog
 func _ready():
 	Main.instance.on_exit_requested.connect(show)
 	Main.instance.on_exit_canceled.connect(hide)
-	get_cancel_button().pressed.connect(on_canceled)
+	canceled.connect(on_canceled)
 	confirmed.connect(on_confirmed)
 	
 func on_canceled():

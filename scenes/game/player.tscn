@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/game/player.gd" id="2_4h1m7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kbbvt"]
-radius = 16.0
+radius = 8.0
 
 [node name="Player" type="RigidBody2D"]
 physics_material_override = ExtResource("1_uuw8h")
@@ -15,6 +15,7 @@ lock_rotation = true
 script = ExtResource("2_4h1m7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_a3xks")

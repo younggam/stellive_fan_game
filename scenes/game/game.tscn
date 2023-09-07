@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://deyqbxlgd5u81"]
+[gd_scene load_steps=16 format=3 uid="uid://deyqbxlgd5u81"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_7jm7b"]
 [ext_resource type="Texture2D" uid="uid://dac5u2sntl6ab" path="res://textures/map.png" id="2_2hqom"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bmex8mabr61o8" path="res://textures/base.png" id="6_vywvk"]
 [ext_resource type="Texture2D" uid="uid://ct1q00gw6e5bv" path="res://textures/fan_cafe.png" id="7_nw166"]
 [ext_resource type="PackedScene" uid="uid://c32o8g4xj0g30" path="res://scenes/game/player.tscn" id="8_ylptw"]
+[ext_resource type="Script" path="res://scripts/game/exit_dialog.gd" id="9_8mopk"]
 [ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="9_mk6le"]
 [ext_resource type="Script" path="res://scripts/game/menu.gd" id="9_x7d75"]
 
@@ -173,10 +174,21 @@ texture = ExtResource("6_vywvk")
 polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
 
 [node name="Player" parent="." instance=ExtResource("8_ylptw")]
+position = Vector2(0, 64)
+
+[node name="BackToTitleDialog" type="ConfirmationDialog" parent="."]
+title = "Confirm exit"
+initial_position = 1
+size = Vector2i(307, 100)
+exclusive = false
+unresizable = true
+dialog_text = "Do you really want to go back to title?"
+script = ExtResource("9_8mopk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Menu" type="VBoxContainer" parent="CanvasLayer"]
+process_mode = 3
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -223,6 +235,12 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("9_mk6le")
 text = "Settings"
+
+[node name="BackToTitle" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Back to title"
 
 [node name="Exit" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
