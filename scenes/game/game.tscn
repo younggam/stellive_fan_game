@@ -1,16 +1,22 @@
-[gd_scene load_steps=16 format=3 uid="uid://deyqbxlgd5u81"]
+[gd_scene load_steps=22 format=3 uid="uid://deyqbxlgd5u81"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_7jm7b"]
 [ext_resource type="Texture2D" uid="uid://dac5u2sntl6ab" path="res://textures/map.png" id="2_2hqom"]
 [ext_resource type="Texture2D" uid="uid://8smmnrdkv8je" path="res://textures/world.png" id="3_uj7jw"]
 [ext_resource type="PhysicsMaterial" uid="uid://fkyx4cfcb88u" path="res://materials/physics/building.tres" id="4_7bb7x"]
 [ext_resource type="Texture2D" uid="uid://qtfu12a6a7i8" path="res://textures/wall.png" id="5_6csyg"]
+[ext_resource type="Script" path="res://scripts/game/pc.gd" id="6_6jja5"]
 [ext_resource type="Texture2D" uid="uid://bmex8mabr61o8" path="res://textures/base.png" id="6_vywvk"]
 [ext_resource type="Texture2D" uid="uid://ct1q00gw6e5bv" path="res://textures/fan_cafe.png" id="7_nw166"]
 [ext_resource type="PackedScene" uid="uid://c32o8g4xj0g30" path="res://scenes/game/player.tscn" id="8_ylptw"]
 [ext_resource type="Script" path="res://scripts/game/exit_dialog.gd" id="9_8mopk"]
 [ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="9_mk6le"]
 [ext_resource type="Script" path="res://scripts/game/menu.gd" id="9_x7d75"]
+[ext_resource type="Script" path="res://scripts/game/health_bar.gd" id="11_x63p4"]
+[ext_resource type="Texture2D" uid="uid://02m82q4m7xnk" path="res://textures/cooltime.png" id="13_rswqt"]
+[ext_resource type="Texture2D" uid="uid://bh1pa4mb20sbl" path="res://textures/skill.png" id="13_s0get"]
+[ext_resource type="Script" path="res://scripts/game/clock.gd" id="15_fvxoc"]
+[ext_resource type="Script" path="res://scripts/game/donation.gd" id="16_ohgyj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vjind"]
 normal = Vector2(1, 2)
@@ -75,7 +81,9 @@ polygon = PackedVector2Array(416, 0, 0, 208, -416, 0, -384, -16, 0, 176, 384, -1
 position = Vector2(-320, -255)
 collision_layer = 2
 collision_mask = 2
+input_pickable = true
 physics_material_override = ExtResource("4_7bb7x")
+script = ExtResource("6_6jja5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/PCs/0"]
 texture = ExtResource("6_vywvk")
@@ -186,6 +194,307 @@ dialog_text = "Do you really want to go back to title?"
 script = ExtResource("9_8mopk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="OverlayUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MyHealthBar" type="ProgressBar" parent="CanvasLayer/OverlayUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -72.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+step = 0.0
+show_percentage = false
+script = ExtResource("11_x63p4")
+
+[node name="Label" type="Label" parent="CanvasLayer/OverlayUI/MyHealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -22.5
+offset_right = 20.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_mk6le")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Skills" type="HBoxContainer" parent="CanvasLayer/OverlayUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -144.0
+offset_right = 320.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Q" type="Panel" parent="CanvasLayer/OverlayUI/Skills"]
+custom_minimum_size = Vector2(157, 72)
+layout_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/OverlayUI/Skills/Q"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -32.0
+offset_right = -4.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+value = 68.0
+fill_mode = 5
+texture_under = ExtResource("13_s0get")
+texture_progress = ExtResource("13_rswqt")
+
+[node name="Shortcut" type="Label" parent="CanvasLayer/OverlayUI/Skills/Q"]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 64.0
+offset_bottom = 48.0
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"HeaderSmall"
+text = "Q"
+horizontal_alignment = 1
+
+[node name="Amount" type="Label" parent="CanvasLayer/OverlayUI/Skills/Q"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 40.0
+offset_right = 64.0
+offset_bottom = 71.0
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItem"
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="W" type="Panel" parent="CanvasLayer/OverlayUI/Skills"]
+custom_minimum_size = Vector2(157, 72)
+layout_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/OverlayUI/Skills/W"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -32.0
+offset_right = -4.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+value = 68.0
+fill_mode = 5
+texture_under = ExtResource("13_s0get")
+texture_progress = ExtResource("13_rswqt")
+
+[node name="Shortcut" type="Label" parent="CanvasLayer/OverlayUI/Skills/W"]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 64.0
+offset_bottom = 48.0
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"HeaderSmall"
+text = "W"
+horizontal_alignment = 1
+
+[node name="Amount" type="Label" parent="CanvasLayer/OverlayUI/Skills/W"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 40.0
+offset_right = 64.0
+offset_bottom = 71.0
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItem"
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="E" type="Panel" parent="CanvasLayer/OverlayUI/Skills"]
+custom_minimum_size = Vector2(157, 72)
+layout_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/OverlayUI/Skills/E"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -32.0
+offset_right = -4.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+value = 68.0
+fill_mode = 5
+texture_under = ExtResource("13_s0get")
+texture_progress = ExtResource("13_rswqt")
+
+[node name="Shortcut" type="Label" parent="CanvasLayer/OverlayUI/Skills/E"]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 64.0
+offset_bottom = 48.0
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"HeaderSmall"
+text = "E"
+horizontal_alignment = 1
+
+[node name="Amount" type="Label" parent="CanvasLayer/OverlayUI/Skills/E"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 40.0
+offset_right = 64.0
+offset_bottom = 71.0
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItem"
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="R" type="Panel" parent="CanvasLayer/OverlayUI/Skills"]
+custom_minimum_size = Vector2(157, 72)
+layout_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/OverlayUI/Skills/R"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -32.0
+offset_right = -4.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+value = 68.0
+fill_mode = 5
+texture_under = ExtResource("13_s0get")
+texture_progress = ExtResource("13_rswqt")
+
+[node name="Shortcut" type="Label" parent="CanvasLayer/OverlayUI/Skills/R"]
+layout_mode = 0
+offset_left = 24.0
+offset_right = 64.0
+offset_bottom = 48.0
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"HeaderSmall"
+text = "R"
+horizontal_alignment = 1
+
+[node name="WallHealthBar" type="ProgressBar" parent="CanvasLayer/OverlayUI"]
+layout_mode = 1
+offset_left = 80.0
+offset_right = 560.0
+offset_bottom = 72.0
+step = 0.0
+show_percentage = false
+script = ExtResource("11_x63p4")
+
+[node name="Label" type="Label" parent="CanvasLayer/OverlayUI/WallHealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -22.5
+offset_right = 20.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_mk6le")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Clock" type="Panel" parent="CanvasLayer/OverlayUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_right = 240.0
+offset_bottom = 72.0
+grow_horizontal = 2
+script = ExtResource("15_fvxoc")
+
+[node name="Label" type="Label" parent="CanvasLayer/OverlayUI/Clock"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_mk6le")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Donation" type="Panel" parent="CanvasLayer/OverlayUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -560.0
+offset_right = -80.0
+offset_bottom = 72.0
+grow_horizontal = 0
+script = ExtResource("16_ohgyj")
+
+[node name="Label" type="Label" parent="CanvasLayer/OverlayUI/Donation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_mk6le")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Menu" type="VBoxContainer" parent="CanvasLayer"]
 process_mode = 3
