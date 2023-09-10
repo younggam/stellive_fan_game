@@ -16,6 +16,7 @@ var prev_escape=false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	visibility_changed.connect(on_visibility_changed)
 	$Back.pressed.connect(on_back_button)
 	Main.instance.on_exit.connect(func(): file.save(file_path))
 	if file.load(file_path):
@@ -50,3 +51,6 @@ func show_or_hide():
 	
 func on_back_button():
 	hide()
+
+func on_visibility_changed():
+	get_tree().paused=visible

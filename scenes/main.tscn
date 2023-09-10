@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/settings/display.gd" id="7_eycec"]
 
 [node name="Main" type="Node"]
+process_mode = 3
 script = ExtResource("1_w3yw5")
 
 [node name="ExitDialog" type="ConfirmationDialog" parent="."]
@@ -48,9 +49,11 @@ theme_type_variation = &"HeaderLarge"
 text = "Loading..."
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Settings" type="VBoxContainer" parent="CanvasLayer"]
 visible = false
+z_index = 4095
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

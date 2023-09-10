@@ -1,8 +1,6 @@
 extends StaticBody2D
 
-var member=0
-var category=0
-var hitaus=true
+@export var mini_game:Game.MiniGame
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,4 +8,4 @@ func _ready():
 
 func on_mouse_left_click(node,event,shape_index):
 	if event is InputEventMouseButton and event.button_index==1 and event.pressed:
-		Game.instance.open_pc(self)
+		Game.instance.open_mini_game(mini_game)

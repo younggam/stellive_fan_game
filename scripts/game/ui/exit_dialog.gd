@@ -7,4 +7,5 @@ func _ready():
 
 
 func on_confirmed():
+	get_tree().paused=false
 	Main.instance.change_state(Main.State.START_SCREEN)

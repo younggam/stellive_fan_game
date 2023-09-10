@@ -13,7 +13,7 @@ func on_continue_button():
 	pass
 	
 func on_new_game_button():
-	Main.instance.change_state(Main.State.HOST)
+	get_parent().change_sub_menu("new_game")
 	
 func on_join_button():
 	pass

@@ -3,6 +3,7 @@ extends Control
 const sub_menus={
 	main=preload("res://scenes/start/menu_main.tscn"),
 	start=preload("res://scenes/start/menu_start.tscn"),
+	new_game=preload("res://scenes/start/menu_new_game.tscn"),
 }
 
 @onready var _current_sub_menu=$Main

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://deyqbxlgd5u81"]
+[gd_scene load_steps=25 format=3 uid="uid://deyqbxlgd5u81"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_7jm7b"]
 [ext_resource type="Texture2D" uid="uid://dac5u2sntl6ab" path="res://textures/map.png" id="2_2hqom"]
@@ -8,15 +8,18 @@
 [ext_resource type="Script" path="res://scripts/game/pc.gd" id="6_6jja5"]
 [ext_resource type="Texture2D" uid="uid://bmex8mabr61o8" path="res://textures/base.png" id="6_vywvk"]
 [ext_resource type="Texture2D" uid="uid://ct1q00gw6e5bv" path="res://textures/fan_cafe.png" id="7_nw166"]
+[ext_resource type="Script" path="res://scripts/game/pickable.gd" id="8_312yr"]
 [ext_resource type="PackedScene" uid="uid://c32o8g4xj0g30" path="res://scenes/game/player.tscn" id="8_ylptw"]
-[ext_resource type="Script" path="res://scripts/game/exit_dialog.gd" id="9_8mopk"]
 [ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="9_mk6le"]
-[ext_resource type="Script" path="res://scripts/game/menu.gd" id="9_x7d75"]
-[ext_resource type="Script" path="res://scripts/game/health_bar.gd" id="11_x63p4"]
+[ext_resource type="Script" path="res://scripts/game/ui/exit_dialog.gd" id="10_emfdh"]
+[ext_resource type="Script" path="res://scripts/game/ui/health_bar.gd" id="11_flwrc"]
 [ext_resource type="Texture2D" uid="uid://02m82q4m7xnk" path="res://textures/cooltime.png" id="13_rswqt"]
 [ext_resource type="Texture2D" uid="uid://bh1pa4mb20sbl" path="res://textures/skill.png" id="13_s0get"]
-[ext_resource type="Script" path="res://scripts/game/clock.gd" id="15_fvxoc"]
-[ext_resource type="Script" path="res://scripts/game/donation.gd" id="16_ohgyj"]
+[ext_resource type="Script" path="res://scripts/game/ui/clock.gd" id="15_bmmea"]
+[ext_resource type="Script" path="res://scripts/game/ui/donation.gd" id="16_7l341"]
+[ext_resource type="Script" path="res://scripts/game/ui/menu.gd" id="17_03fhr"]
+[ext_resource type="Script" path="res://scripts/game/ui/pc.gd" id="18_elh6o"]
+[ext_resource type="Script" path="res://scripts/game/ui/mini_game.gd" id="20_5mx0p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vjind"]
 normal = Vector2(1, 2)
@@ -35,6 +38,7 @@ normal = Vector2(-1, 2)
 distance = -204.8
 
 [node name="Game" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_7jm7b")
 
 [node name="Map" type="Sprite2D" parent="."]
@@ -95,7 +99,9 @@ polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
 position = Vector2(-160, -176)
 collision_layer = 2
 collision_mask = 2
+input_pickable = true
 physics_material_override = ExtResource("4_7bb7x")
+script = ExtResource("6_6jja5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/PCs/1"]
 texture = ExtResource("6_vywvk")
@@ -107,7 +113,9 @@ polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
 position = Vector2(0, -96)
 collision_layer = 2
 collision_mask = 2
+input_pickable = true
 physics_material_override = ExtResource("4_7bb7x")
+script = ExtResource("6_6jja5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/PCs/2"]
 texture = ExtResource("6_vywvk")
@@ -119,7 +127,9 @@ polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
 position = Vector2(160, -176)
 collision_layer = 2
 collision_mask = 2
+input_pickable = true
 physics_material_override = ExtResource("4_7bb7x")
+script = ExtResource("6_6jja5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/PCs/3"]
 texture = ExtResource("6_vywvk")
@@ -131,7 +141,9 @@ polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
 position = Vector2(320, -256)
 collision_layer = 2
 collision_mask = 2
+input_pickable = true
 physics_material_override = ExtResource("4_7bb7x")
+script = ExtResource("6_6jja5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/PCs/4"]
 texture = ExtResource("6_vywvk")
@@ -141,7 +153,9 @@ polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
 
 [node name="JustChattingTopicSearch" type="StaticBody2D" parent="Map"]
 position = Vector2(-512, 1)
+input_pickable = true
 physics_material_override = ExtResource("4_7bb7x")
+script = ExtResource("8_312yr")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/JustChattingTopicSearch"]
 texture = ExtResource("6_vywvk")
@@ -150,7 +164,10 @@ texture = ExtResource("6_vywvk")
 polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
 
 [node name="SingingPractice" type="StaticBody2D" parent="Map"]
+input_pickable = true
 physics_material_override = ExtResource("4_7bb7x")
+script = ExtResource("8_312yr")
+mini_game = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/SingingPractice"]
 texture = ExtResource("6_vywvk")
@@ -160,7 +177,10 @@ polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
 
 [node name="GameSearch" type="StaticBody2D" parent="Map"]
 position = Vector2(512, 0)
+input_pickable = true
 physics_material_override = ExtResource("4_7bb7x")
+script = ExtResource("8_312yr")
+mini_game = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/GameSearch"]
 texture = ExtResource("6_vywvk")
@@ -185,15 +205,17 @@ polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
 position = Vector2(0, 64)
 
 [node name="BackToTitleDialog" type="ConfirmationDialog" parent="."]
+process_mode = 3
 title = "Confirm exit"
 initial_position = 1
 size = Vector2i(307, 100)
 exclusive = false
 unresizable = true
 dialog_text = "Do you really want to go back to title?"
-script = ExtResource("9_8mopk")
+script = ExtResource("10_emfdh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="OverlayUI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -202,6 +224,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MyHealthBar" type="ProgressBar" parent="CanvasLayer/OverlayUI"]
 layout_mode = 1
@@ -217,7 +240,7 @@ grow_horizontal = 2
 grow_vertical = 0
 step = 0.0
 show_percentage = false
-script = ExtResource("11_x63p4")
+script = ExtResource("11_flwrc")
 
 [node name="Label" type="Label" parent="CanvasLayer/OverlayUI/MyHealthBar"]
 layout_mode = 1
@@ -244,9 +267,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -320.0
-offset_top = -144.0
+offset_top = -143.0
 offset_right = 320.0
-offset_bottom = -72.0
+offset_bottom = -71.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -421,7 +444,7 @@ offset_right = 560.0
 offset_bottom = 72.0
 step = 0.0
 show_percentage = false
-script = ExtResource("11_x63p4")
+script = ExtResource("11_flwrc")
 
 [node name="Label" type="Label" parent="CanvasLayer/OverlayUI/WallHealthBar"]
 layout_mode = 1
@@ -449,7 +472,7 @@ offset_left = -240.0
 offset_right = 240.0
 offset_bottom = 72.0
 grow_horizontal = 2
-script = ExtResource("15_fvxoc")
+script = ExtResource("15_bmmea")
 
 [node name="Label" type="Label" parent="CanvasLayer/OverlayUI/Clock"]
 layout_mode = 1
@@ -477,7 +500,7 @@ offset_left = -560.0
 offset_right = -80.0
 offset_bottom = 72.0
 grow_horizontal = 0
-script = ExtResource("16_ohgyj")
+script = ExtResource("16_7l341")
 
 [node name="Label" type="Label" parent="CanvasLayer/OverlayUI/Donation"]
 layout_mode = 1
@@ -497,7 +520,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Menu" type="VBoxContainer" parent="CanvasLayer"]
-process_mode = 3
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -511,7 +533,7 @@ offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
-script = ExtResource("9_x7d75")
+script = ExtResource("17_03fhr")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Menu"]
 custom_minimum_size = Vector2(0, 480)
@@ -559,6 +581,247 @@ text = "Exit
 "
 
 [node name="Back" type="Button" parent="CanvasLayer/Menu"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Back
+"
+
+[node name="PC" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -270.0
+offset_right = 240.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("18_elh6o")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/PC"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PC/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -190.0
+offset_right = 159.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_mk6le")
+columns = 2
+
+[node name="Member" type="Label" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+tooltip_text = "Select a member who control PC. Not important, just  preference."
+mouse_filter = 0
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItem"
+text = "Member"
+
+[node name="MemberOption" type="OptionButton" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+item_count = 5
+selected = 0
+popup/item_0/text = "Yuni"
+popup/item_0/id = 0
+popup/item_1/text = "Hina"
+popup/item_1/id = 1
+popup/item_2/text = "Mashiro"
+popup/item_2/id = 2
+popup/item_3/text = "Lize"
+popup/item_3/id = 3
+popup/item_4/text = "Tabi"
+popup/item_4/id = 4
+
+[node name="Category" type="Label" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItem"
+text = "Category"
+
+[node name="CategoryOption" type="OptionButton" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+item_count = 3
+selected = 0
+popup/item_0/text = "Just Chatting"
+popup/item_0/id = 0
+popup/item_1/text = "Music"
+popup/item_1/id = 1
+popup/item_2/text = "Games + Demos"
+popup/item_2/id = 2
+
+[node name="Hiatus" type="Label" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItem"
+text = "Hiatus"
+
+[node name="HiatusToggle" type="Button" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"ToggleButton"
+toggle_mode = true
+text = "Yes"
+
+[node name="Attractiveness" type="Label" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItemSmall"
+text = "Attractiveness"
+
+[node name="AttractivenessValue" type="Label" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItemSmall"
+text = "0"
+
+[node name="Healing" type="Label" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItemSmall"
+text = "Healing"
+
+[node name="HealingValue" type="Label" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItemSmall"
+text = "0"
+
+[node name="SplashRadius" type="Label" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItemSmall"
+text = "Splash Radius"
+
+[node name="SplashRadiusValue" type="Label" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItemSmall"
+text = "0"
+
+[node name="Description" type="Label" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItemSmall"
+text = "Description"
+
+[node name="DescriptionValue" type="Label" parent="CanvasLayer/PC/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItemSmall"
+text = "Hi"
+
+[node name="Back" type="Button" parent="CanvasLayer/PC"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Back
+"
+
+[node name="MiniGame" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -240.0
+offset_right = 240.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("20_5mx0p")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/MiniGame"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MiniGame/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_mk6le")
+columns = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItem"
+text = "Search just chatting topic"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="Easy" type="Button" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Easy"
+
+[node name="EasyMultiple" type="Label" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItem"
+text = "50%"
+vertical_alignment = 1
+
+[node name="Normal" type="Button" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Normal"
+
+[node name="NormalMultiple" type="Label" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItem"
+text = "100%"
+vertical_alignment = 1
+
+[node name="Difficult" type="Button" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Difficult"
+
+[node name="DifficultMultiple" type="Label" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+theme_type_variation = &"LabelItem"
+text = "200%"
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="CanvasLayer/MiniGame"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("9_mk6le")

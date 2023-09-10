@@ -2,6 +2,7 @@ extends VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	visibility_changed.connect(on_visibility_changed)
 	$Panel/VBoxContainer/Save.pressed.connect(on_save_button)
 	$Panel/VBoxContainer/Settings.pressed.connect(on_settings_button)
 	$Panel/VBoxContainer/BackToTitle.pressed.connect(on_back_to_title_button)
@@ -18,8 +19,8 @@ func on_save_button():
 	pass
 	
 func on_settings_button():
-	Main.instance.toggle_settings()
 	hide()
+	Main.instance.toggle_settings()
 	
 func on_back_to_title_button():
 	$"../../BackToTitleDialog".show()
@@ -35,3 +36,6 @@ func show_or_hide():
 		hide()
 	else:
 		show()
+
+func on_visibility_changed():
+	get_tree().paused=visible

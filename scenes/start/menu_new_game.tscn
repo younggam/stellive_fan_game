@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwp1oqn7mpkjj"]
+
+[ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="1_xm47n"]
+[ext_resource type="Script" path="res://scripts/start/menu_new_game.gd" id="2_5337v"]
+
+[node name="Main" type="VBoxContainer"]
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 300.0
+theme = ExtResource("1_xm47n")
+script = ExtResource("2_5337v")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -90.0
+offset_right = 121.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/v_separation = 60
+columns = 2
+
+[node name="Difficulty" type="Label" parent="Panel/GridContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("1_xm47n")
+theme_type_variation = &"LabelItem"
+text = "Difficulty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DifficultyOption" type="OptionButton" parent="Panel/GridContainer"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Easy"
+popup/item_0/id = 0
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
+
+[node name="Member" type="Label" parent="Panel/GridContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("1_xm47n")
+theme_type_variation = &"LabelItem"
+text = "Member"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MemberOption" type="OptionButton" parent="Panel/GridContainer"]
+layout_mode = 2
+item_count = 6
+selected = 0
+popup/item_0/text = "Kanna"
+popup/item_0/id = 0
+popup/item_1/text = "Yuni"
+popup/item_1/id = 1
+popup/item_2/text = "Hina"
+popup/item_2/id = 2
+popup/item_3/text = "Mashiro"
+popup/item_3/id = 3
+popup/item_4/text = "Lize"
+popup/item_4/id = 4
+popup/item_5/text = "Tabi"
+popup/item_5/id = 5
+
+[node name="Ok" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("1_xm47n")
+text = "Ok"
+
+[node name="Back" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("1_xm47n")
+text = "Back
+"
