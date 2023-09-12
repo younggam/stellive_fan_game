@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://deyqbxlgd5u81"]
+[gd_scene load_steps=28 format=3 uid="uid://deyqbxlgd5u81"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_7jm7b"]
 [ext_resource type="Texture2D" uid="uid://dac5u2sntl6ab" path="res://textures/map.png" id="2_2hqom"]
@@ -20,6 +20,9 @@
 [ext_resource type="Script" path="res://scripts/game/ui/menu.gd" id="17_03fhr"]
 [ext_resource type="Script" path="res://scripts/game/ui/pc.gd" id="18_elh6o"]
 [ext_resource type="Script" path="res://scripts/game/ui/mini_game.gd" id="20_5mx0p"]
+[ext_resource type="Texture2D" uid="uid://jgqsm2o8yepr" path="res://textures/mini_game/background.png" id="21_xmsd0"]
+[ext_resource type="Script" path="res://scripts/game/mini_game/rhythm_pop.gd" id="22_eleag"]
+[ext_resource type="Resource" uid="uid://k27wnduvh2dn" path="res://notes_presets/lemon.tres" id="23_cne07"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vjind"]
 normal = Vector2(1, 2)
@@ -827,3 +830,295 @@ layout_mode = 2
 theme = ExtResource("9_mk6le")
 text = "Back
 "
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("21_xmsd0")
+script = ExtResource("22_eleag")
+easy_presets = Array[Resource("res://scripts/game/mini_game/notes_preset.gd")]([ExtResource("23_cne07")])
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/TextureRect/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Score: "
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/TextureRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 8
+
+[node name="0" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="1" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="2" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="3" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="4" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="5" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="6" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="7" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="8" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="9" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="10" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="11" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="12" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="13" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="14" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="15" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="16" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="17" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="18" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="19" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="20" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="21" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="22" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="23" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="24" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="25" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="26" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="27" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="28" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="29" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="30" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="31" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="32" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="33" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="34" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="35" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="36" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="37" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="38" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="39" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="40" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="41" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="42" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="43" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="44" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="45" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="46" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="47" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="48" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="49" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="50" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="51" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="52" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="53" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="54" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="55" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="56" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="57" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="58" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="59" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="60" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="61" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="62" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="63" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
