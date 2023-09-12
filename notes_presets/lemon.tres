@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_mcp85")
 texts = Array[String](["A", "Le", "Mon", "Has", "4", "Le", "Mon", "Viatamins"])
-key = Array[int]([81, 87, 69, 82, 85, 73, 79, 80])
+keys = Array[int]([81, 87, 69, 82, 85, 73, 79, 80])
 intervals = Array[float]([0.25, 0.25, 0.25, 0.75, 0.25, 0.25, 0.25])
 Hands = 5

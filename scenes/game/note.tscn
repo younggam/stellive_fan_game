@@ -1,9 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://drbv778envj4i"]
+[gd_scene load_steps=4 format=3 uid="uid://drbv778envj4i"]
 
+[ext_resource type="Script" path="res://scripts/game/mini_game/note.gd" id="1_kyarn"]
 [ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="1_x0odd"]
 [ext_resource type="Texture2D" uid="uid://b172b3onyey2r" path="res://textures/mini_game/w.png" id="2_bkkua"]
 
-[node name="Note" type="VBoxContainer"]
+[node name="Note" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kyarn")
+initial_scale = 3.0
+delay = 1.5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -16,7 +29,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_x0odd")
 theme_type_variation = &"LabelItem"
@@ -25,8 +38,35 @@ text = "Le"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("2_bkkua")
 stretch_mode = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DetectionLine" type="Line2D" parent="Control"]
+points = PackedVector2Array(48, 0, 46.364, 12.423, 41.569, 24, 33.941, 33.941, 24, 41.569, 12.423, 46.364, 0, 48, -12.423, 46.364, -24, 41.569, -33.941, 33.941, -41.569, 24, -46.364, 12.423, -48, 0, -46.364, -12.423, -41.569, -24, -33.941, -33.941, -24, -41.569, -12.423, -46.364, 0, -48, 12.423, -46.364, 24, -41.569, 33.941, -33.941, 41.569, -24, 46.364, -12.423, 48, 0)
+width = 2.0
+default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="ElapseLine" type="Line2D" parent="Control"]
+scale = Vector2(3, 3)
+points = PackedVector2Array(48, 0, 46.364, 12.423, 41.569, 24, 33.941, 33.941, 24, 41.569, 12.423, 46.364, 0, 48, -12.423, 46.364, -24, 41.569, -33.941, 33.941, -41.569, 24, -46.364, 12.423, -48, 0, -46.364, -12.423, -41.569, -24, -33.941, -33.941, -24, -41.569, -12.423, -46.364, 0, -48, 12.423, -46.364, 24, -41.569, 33.941, -33.941, 41.569, -24, 46.364, -12.423, 48, 0)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
