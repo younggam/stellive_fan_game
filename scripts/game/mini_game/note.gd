@@ -2,6 +2,8 @@ extends Control
 
 @export var initial_scale:float
 @export var delay:float
+@export var kill_delay:float
+@export var detect_diff:float
 
 static var key_texture_map={
 	KEY_Q:preload("res://textures/mini_game/q.png"),
@@ -15,31 +17,49 @@ static var key_texture_map={
 	KEY_P:preload("res://textures/mini_game/p.png")
 }
 
+static var key_stack={
+	KEY_Q:[],
+	KEY_W:[],
+	KEY_E:[],
+	KEY_R:[],
+	KEY_SPACE:[],
+	KEY_U:[],
+	KEY_I:[],
+	KEY_O:[],
+	KEY_P:[],
+}
+
 var key
-
 var time=0
-
 var poped=false
 
+signal pop(result:bool)
+
 func initialize(text,key):
-	print("hello?")
 	$VBoxContainer/Label.text=text
 	self.key=key
+	key_stack[key].push_back(get_instance_id())
 	$VBoxContainer/TextureRect.texture=key_texture_map[key]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if poped:
-		return
+	time+=delta
+	if !poped:
+		var scale=lerpf(initial_scale,1,time/delay)
+		$Control/ElapseLine.scale=Vector2(scale,scale)
 
-	time+=delta	
-	var scale=lerpf(initial_scale,1,time/delay)
-	$Control/ElapseLine.scale=Vector2(scale,scale)
-	
-	if time>delay:
-		poped=true
+	if time>delay+kill_delay:
+		if !poped:
+			on_pop(false)
+		queue_free()
 
 func _shortcut_input(event):
-	if event is InputEventKey and event.keycode==key:
+	if !poped and event is InputEventKey and event.keycode==key and key_stack[key].front()==get_instance_id():
 		if event.is_pressed() and !event.is_echo():
 			poped=true
+			on_pop(absf(time-delay)<=detect_diff)
+			time=delay
+
+func on_pop(result):
+	pop.emit(result)
+	key_stack[key].pop_front()

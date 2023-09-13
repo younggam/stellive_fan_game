@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="NotesPreset" load_steps=2 format=3 uid="uid://db1y47tjcrf3g"]
+
+[ext_resource type="Script" path="res://scripts/game/mini_game/notes_preset.gd" id="1_c8ouf"]
+
+[resource]
+script = ExtResource("1_c8ouf")
+texts = Array[String](["Ah", "Oh", "⎕", "⎕", "ši", "ć"])
+keys = Array[int]([81, 32, 85, 73, 69, 82])
+intervals = Array[float]([1.0, 1.0, 0.5, 0.5, 0.5])

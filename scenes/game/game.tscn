@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://deyqbxlgd5u81"]
+[gd_scene load_steps=25 format=3 uid="uid://deyqbxlgd5u81"]
 
 [ext_resource type="Script" path="res://scripts/game/game.gd" id="1_7jm7b"]
 [ext_resource type="Texture2D" uid="uid://dac5u2sntl6ab" path="res://textures/map.png" id="2_2hqom"]
@@ -20,9 +20,6 @@
 [ext_resource type="Script" path="res://scripts/game/ui/menu.gd" id="17_03fhr"]
 [ext_resource type="Script" path="res://scripts/game/ui/pc.gd" id="18_elh6o"]
 [ext_resource type="Script" path="res://scripts/game/ui/mini_game.gd" id="20_5mx0p"]
-[ext_resource type="Texture2D" uid="uid://jgqsm2o8yepr" path="res://textures/mini_game/background.png" id="21_xmsd0"]
-[ext_resource type="Script" path="res://scripts/game/mini_game/rhythm_pop.gd" id="22_eleag"]
-[ext_resource type="Resource" uid="uid://k27wnduvh2dn" path="res://notes_presets/lemon.tres" id="23_cne07"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vjind"]
 normal = Vector2(1, 2)
@@ -522,74 +519,6 @@ theme = ExtResource("9_mk6le")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Menu" type="VBoxContainer" parent="CanvasLayer"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -180.0
-offset_right = 240.0
-offset_bottom = 360.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 0
-script = ExtResource("17_03fhr")
-
-[node name="Panel" type="Panel" parent="CanvasLayer/Menu"]
-custom_minimum_size = Vector2(0, 480)
-layout_mode = 2
-theme = ExtResource("9_mk6le")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -150.0
-offset_right = 160.0
-offset_bottom = 150.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("9_mk6le")
-
-[node name="Save" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-theme = ExtResource("9_mk6le")
-text = "Save"
-
-[node name="Settings" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-theme = ExtResource("9_mk6le")
-text = "Settings"
-
-[node name="BackToTitle" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-theme = ExtResource("9_mk6le")
-text = "Back to title"
-
-[node name="Exit" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-theme = ExtResource("9_mk6le")
-text = "Exit
-"
-
-[node name="Back" type="Button" parent="CanvasLayer/Menu"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-theme = ExtResource("9_mk6le")
-text = "Back
-"
-
 [node name="PC" type="VBoxContainer" parent="CanvasLayer"]
 visible = false
 anchors_preset = 8
@@ -737,7 +666,7 @@ theme = ExtResource("9_mk6le")
 text = "Back
 "
 
-[node name="MiniGame" type="VBoxContainer" parent="CanvasLayer"]
+[node name="MiniGameUI" type="VBoxContainer" parent="CanvasLayer"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -753,11 +682,11 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 script = ExtResource("20_5mx0p")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/MiniGame"]
+[node name="Panel" type="Panel" parent="CanvasLayer/MiniGameUI"]
 custom_minimum_size = Vector2(0, 480)
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MiniGame/Panel"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MiniGameUI/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -773,7 +702,7 @@ grow_vertical = 2
 theme = ExtResource("9_mk6le")
 columns = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/MiniGameUI/Panel/GridContainer"]
 custom_minimum_size = Vector2(270, 0)
 layout_mode = 2
 theme = ExtResource("9_mk6le")
@@ -782,343 +711,128 @@ text = "Search just chatting topic"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Icon" type="TextureRect" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+[node name="Icon" type="TextureRect" parent="CanvasLayer/MiniGameUI/Panel/GridContainer"]
 layout_mode = 2
 
-[node name="Easy" type="Button" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+[node name="Easy" type="Button" parent="CanvasLayer/MiniGameUI/Panel/GridContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("9_mk6le")
 text = "Easy"
 
-[node name="EasyMultiple" type="Label" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+[node name="EasyMultiple" type="Label" parent="CanvasLayer/MiniGameUI/Panel/GridContainer"]
 layout_mode = 2
 theme = ExtResource("9_mk6le")
 theme_type_variation = &"LabelItem"
 text = "50%"
 vertical_alignment = 1
 
-[node name="Normal" type="Button" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+[node name="Normal" type="Button" parent="CanvasLayer/MiniGameUI/Panel/GridContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("9_mk6le")
 text = "Normal"
 
-[node name="NormalMultiple" type="Label" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+[node name="NormalMultiple" type="Label" parent="CanvasLayer/MiniGameUI/Panel/GridContainer"]
 layout_mode = 2
 theme = ExtResource("9_mk6le")
 theme_type_variation = &"LabelItem"
 text = "100%"
 vertical_alignment = 1
 
-[node name="Difficult" type="Button" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+[node name="Hard" type="Button" parent="CanvasLayer/MiniGameUI/Panel/GridContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("9_mk6le")
-text = "Difficult"
+text = "Hard"
 
-[node name="DifficultMultiple" type="Label" parent="CanvasLayer/MiniGame/Panel/GridContainer"]
+[node name="HardMultiple" type="Label" parent="CanvasLayer/MiniGameUI/Panel/GridContainer"]
 layout_mode = 2
 theme = ExtResource("9_mk6le")
 theme_type_variation = &"LabelItem"
 text = "200%"
 vertical_alignment = 1
 
-[node name="Back" type="Button" parent="CanvasLayer/MiniGame"]
+[node name="Back" type="Button" parent="CanvasLayer/MiniGameUI"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("9_mk6le")
 text = "Back
 "
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="MiniGame" type="Control" parent="CanvasLayer"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
-texture = ExtResource("21_xmsd0")
-script = ExtResource("22_eleag")
-easy_presets = Array[Resource("res://scripts/game/mini_game/notes_preset.gd")]([ExtResource("23_cne07")])
+mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TextureRect"]
+[node name="Menu" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -180.0
+offset_right = 240.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("17_03fhr")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Menu"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+theme = ExtResource("9_mk6le")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -160.0
+offset_top = -150.0
+offset_right = 160.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_mk6le")
 
-[node name="Label" type="Label" parent="CanvasLayer/TextureRect/VBoxContainer"]
+[node name="Save" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("9_mk6le")
-text = "Score: "
+text = "Save"
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/TextureRect/VBoxContainer"]
+[node name="Settings" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-theme_override_constants/h_separation = 12
-theme_override_constants/v_separation = 12
-columns = 8
+theme = ExtResource("9_mk6le")
+text = "Settings"
 
-[node name="0" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
+[node name="BackToTitle" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Back to title"
 
-[node name="1" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
+[node name="Exit" type="Button" parent="CanvasLayer/Menu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Exit
+"
 
-[node name="2" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
+[node name="Back" type="Button" parent="CanvasLayer/Menu"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-
-[node name="3" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="4" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="5" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="6" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="7" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="8" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="9" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="10" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="11" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="12" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="13" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="14" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="15" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="16" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="17" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="18" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="19" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="20" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="21" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="22" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="23" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="24" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="25" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="26" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="27" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="28" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="29" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="30" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="31" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="32" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="33" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="34" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="35" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="36" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="37" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="38" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="39" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="40" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="41" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="42" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="43" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="44" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="45" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="46" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="47" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="48" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="49" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="50" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="51" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="52" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="53" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="54" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="55" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="56" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="57" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="58" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="59" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="60" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="61" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="62" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-
-[node name="63" type="Panel" parent="CanvasLayer/TextureRect/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
+theme = ExtResource("9_mk6le")
+text = "Back
+"

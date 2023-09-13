@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://drbv778envj4i"]
+[gd_scene load_steps=5 format=3 uid="uid://drbv778envj4i"]
 
 [ext_resource type="Script" path="res://scripts/game/mini_game/note.gd" id="1_kyarn"]
 [ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="1_x0odd"]
 [ext_resource type="Texture2D" uid="uid://b172b3onyey2r" path="res://textures/mini_game/w.png" id="2_bkkua"]
+[ext_resource type="Material" uid="uid://dic0qmr7a8ewl" path="res://materials/pop_material.tres" id="4_lrhk3"]
 
 [node name="Note" type="Control"]
 layout_mode = 3
@@ -12,8 +13,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kyarn")
-initial_scale = 3.0
-delay = 1.5
+initial_scale = 2.5
+delay = 1.0
+kill_delay = 0.25
+detect_diff = 0.1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -63,10 +66,13 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="ElapseLine" type="Line2D" parent="Control"]
-scale = Vector2(3, 3)
+scale = Vector2(2.5, 2.5)
 points = PackedVector2Array(48, 0, 46.364, 12.423, 41.569, 24, 33.941, 33.941, 24, 41.569, 12.423, 46.364, 0, 48, -12.423, 46.364, -24, 41.569, -33.941, 33.941, -41.569, 24, -46.364, 12.423, -48, 0, -46.364, -12.423, -41.569, -24, -33.941, -33.941, -24, -41.569, -12.423, -46.364, 0, -48, 12.423, -46.364, 24, -41.569, 33.941, -33.941, 41.569, -24, 46.364, -12.423, 48, 0)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Control"]
+process_material = ExtResource("4_lrhk3")

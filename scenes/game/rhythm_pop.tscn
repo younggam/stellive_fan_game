@@ -1,0 +1,346 @@
+[gd_scene load_steps=6 format=3 uid="uid://boceowqi16i3i"]
+
+[ext_resource type="Texture2D" uid="uid://jgqsm2o8yepr" path="res://textures/mini_game/background.png" id="1_n4qsi"]
+[ext_resource type="Script" path="res://scripts/game/mini_game/rhythm_pop.gd" id="2_in8nt"]
+[ext_resource type="Resource" uid="uid://k27wnduvh2dn" path="res://notes_presets/lemon.tres" id="3_fonf3"]
+[ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="4_qh18v"]
+[ext_resource type="Resource" uid="uid://db1y47tjcrf3g" path="res://notes_presets/sichi.tres" id="4_u2so2"]
+
+[node name="RhythmPop" type="TextureRect"]
+process_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("1_n4qsi")
+script = ExtResource("2_in8nt")
+presets = Array[Resource("res://scripts/game/mini_game/notes_preset.gd")]([ExtResource("3_fonf3"), ExtResource("4_u2so2")])
+easy_count = 30
+normal_count = 45
+hard_count = 60
+easy_mul = 2.0
+hard_mul = 0.5
+base_interval = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_qh18v")
+text = "Score: 0.0%"
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 8
+
+[node name="0" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="1" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="2" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="3" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="4" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="5" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="6" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="7" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="8" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="9" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="10" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="11" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="12" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="13" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="14" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="15" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="16" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="17" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="18" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="19" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="20" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="21" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="22" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="23" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="24" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="25" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="26" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="27" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="28" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="29" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="30" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="31" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="32" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="33" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="34" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="35" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="36" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="37" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="38" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="39" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="40" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="41" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="42" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="43" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="44" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="45" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="46" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="47" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="48" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="49" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="50" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="51" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="52" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="53" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="54" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="55" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="56" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="57" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="58" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="59" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="60" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="61" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="62" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="63" type="Panel" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(360, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.5
+offset_top = -89.0
+offset_right = 36.5
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(180, 90)
+theme = ExtResource("4_qh18v")
+theme_type_variation = &"HeaderLarge"
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GiveUp" type="Button" parent="."]
+process_mode = 3
+custom_minimum_size = Vector2(240, 60)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -30.0
+offset_right = -200.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("4_qh18v")
+text = "Give up"

@@ -13,7 +13,6 @@ func _shortcut_input(event):
 	if event is InputEventKey and event.keycode == KEY_ESCAPE:
 		if event.pressed and !event.is_echo():
 			show_or_hide()
-			get_viewport().set_input_as_handled()
 
 func on_save_button():
 	pass

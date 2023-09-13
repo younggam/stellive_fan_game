@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dic0qmr7a8ewl"]
+
+[ext_resource type="Shader" uid="uid://c4f66b083e8fv" path="res://materials/pop.tres" id="1_tps4o"]
+
+[resource]
+shader = ExtResource("1_tps4o")
+shader_parameter/Radius = 48.0
