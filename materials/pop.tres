@@ -1,7 +1,20 @@
-[gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://c4f66b083e8fv"]
+[gd_resource type="VisualShader" load_steps=21 format=3 uid="uid://c4f66b083e8fv"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_jnq15"]
 operator = 2
+
+[sub_resource type="VisualShaderNodeCompare" id="VisualShaderNodeCompare_n47dt"]
+function = 5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_v33gd"]
+input_name = "lifetime"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_g36bq"]
+input_name = "custom"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_y7ywa"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ae674"]
 input_name = "velocity"
@@ -19,6 +32,21 @@ input_name = "delta"
 [sub_resource type="VisualShaderNodeParticleAccelerator" id="VisualShaderNodeParticleAccelerator_8ppnn"]
 default_input_values = [0, Vector3(1, 1, 1), 1, 0.0, 2, Vector3(0, 0, 0)]
 mode = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_p8y2o"]
+input_name = "delta"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_gbbwa"]
+input_name = "custom"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_m8glh"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_3mk3c"]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_rea65"]
+op_type = 0
 
 [sub_resource type="VisualShaderNodeParticleRingEmitter" id="VisualShaderNodeParticleRingEmitter_67lyr"]
 mode_2d = true
@@ -152,6 +180,23 @@ void process() {
 	uint __seed = __hash(NUMBER + uint(1) + RANDOM_SEED);
 
 	{
+// Input:13
+		vec4 n_out13p0 = CUSTOM;
+
+
+// VectorDecompose:14
+		float n_out14p0 = vec2(n_out13p0.xy).x;
+		float n_out14p1 = vec2(n_out13p0.xy).y;
+
+
+// Input:12
+		float n_out12p0 = LIFETIME;
+
+
+// Compare:11
+		bool n_out11p0 = n_out14p0 <= n_out12p0;
+
+
 // Input:2
 		vec3 n_out2p0 = VELOCITY;
 
@@ -185,14 +230,45 @@ void process() {
 
 
 // ProcessOutput:0
-		VELOCITY = n_out8p0;
+		ACTIVE = n_out11p0;
+		if(ACTIVE) {
+			VELOCITY = n_out8p0;
+		}
+
+
+	}
+	
+	{
+// Input:2
+		float n_out2p0 = DELTA;
+
+
+// Input:3
+		vec4 n_out3p0 = CUSTOM;
+
+
+// VectorDecompose:4
+		float n_out4p0 = vec2(n_out3p0.xy).x;
+		float n_out4p1 = vec2(n_out3p0.xy).y;
+
+
+// FloatOp:5
+		float n_out5p0 = n_out2p0 + n_out4p0;
+
+
+// VectorCompose:6
+		vec2 n_out6p0 = vec2(n_out5p0, n_out4p1);
+
+
+// CustomProcessOutput:0
+		CUSTOM.rgb = vec3(n_out6p0, 0.0);
 
 
 	}
 }
 
 "
-graph_offset = Vector2(-379.875, -115.971)
+graph_offset = Vector2(-370.597, -11.3018)
 mode = 2
 flags/collision_use_scale = false
 flags/disable_force = false
@@ -218,9 +294,28 @@ nodes/process/4/position = Vector2(-600, 300)
 nodes/process/5/node = SubResource("VisualShaderNodeInput_2sf3t")
 nodes/process/5/position = Vector2(-600, 600)
 nodes/process/8/node = SubResource("VisualShaderNodeVectorOp_lw4i6")
-nodes/process/8/position = Vector2(200, 200)
+nodes/process/8/position = Vector2(200, 240)
 nodes/process/9/node = SubResource("VisualShaderNodeParticleAccelerator_8ppnn")
 nodes/process/9/position = Vector2(-20, 400)
 nodes/process/10/node = SubResource("VisualShaderNodeFloatOp_jnq15")
 nodes/process/10/position = Vector2(-240, 460)
-nodes/process/connections = PackedInt32Array(2, 0, 8, 0, 8, 0, 0, 1, 9, 0, 8, 1, 5, 0, 10, 1, 4, 0, 10, 0, 10, 0, 9, 0)
+nodes/process/11/node = SubResource("VisualShaderNodeCompare_n47dt")
+nodes/process/11/position = Vector2(200, 60)
+nodes/process/12/node = SubResource("VisualShaderNodeInput_v33gd")
+nodes/process/12/position = Vector2(-160, 160)
+nodes/process/13/node = SubResource("VisualShaderNodeInput_g36bq")
+nodes/process/13/position = Vector2(-280, 80)
+nodes/process/14/node = SubResource("VisualShaderNodeVectorDecompose_y7ywa")
+nodes/process/14/position = Vector2(0, 40)
+nodes/process/connections = PackedInt32Array(2, 0, 8, 0, 8, 0, 0, 1, 9, 0, 8, 1, 5, 0, 10, 1, 4, 0, 10, 0, 10, 0, 9, 0, 12, 0, 11, 1, 11, 0, 0, 0, 13, 0, 14, 0, 14, 0, 11, 0)
+nodes/process_custom/2/node = SubResource("VisualShaderNodeInput_p8y2o")
+nodes/process_custom/2/position = Vector2(-480, 120)
+nodes/process_custom/3/node = SubResource("VisualShaderNodeInput_gbbwa")
+nodes/process_custom/3/position = Vector2(-640, 280)
+nodes/process_custom/4/node = SubResource("VisualShaderNodeVectorDecompose_m8glh")
+nodes/process_custom/4/position = Vector2(-360, 260)
+nodes/process_custom/5/node = SubResource("VisualShaderNodeFloatOp_3mk3c")
+nodes/process_custom/5/position = Vector2(-160, 220)
+nodes/process_custom/6/node = SubResource("VisualShaderNodeVectorCompose_rea65")
+nodes/process_custom/6/position = Vector2(40, 260)
+nodes/process_custom/connections = PackedInt32Array(3, 0, 4, 0, 2, 0, 5, 0, 4, 0, 5, 1, 5, 0, 6, 0, 4, 1, 6, 1, 6, 0, 0, 0)

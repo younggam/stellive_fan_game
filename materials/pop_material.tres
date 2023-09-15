@@ -4,6 +4,6 @@
 
 [resource]
 shader = ExtResource("1_tps4o")
-shader_parameter/InitialVelocity = 144.0
+shader_parameter/InitialVelocity = 1536.0
 shader_parameter/Radius = 48.0
-shader_parameter/Accel = -14.4
+shader_parameter/Accel = -1536.0
