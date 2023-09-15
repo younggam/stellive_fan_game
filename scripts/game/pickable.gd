@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@export var mini_game:Game.MiniGame
+@export var mini_game:Enums.MiniGame
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

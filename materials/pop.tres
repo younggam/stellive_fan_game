@@ -1,69 +1,48 @@
-[gd_resource type="VisualShader" load_steps=20 format=3 uid="uid://c4f66b083e8fv"]
+[gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://c4f66b083e8fv"]
 
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ewlqv"]
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_jnq15"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ae674"]
 input_name = "velocity"
 
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_sk0fq"]
-operator = 8
-
-[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_cmwc1"]
-default_input_values = [0, Vector2(0, 0)]
-op_type = 0
-
-[sub_resource type="VisualShaderNodeVec3Constant" id="VisualShaderNodeVec3Constant_ayan3"]
-constant = Vector3(0, 0, 1)
-
-[sub_resource type="VisualShaderNodeParticleRingEmitter" id="VisualShaderNodeParticleRingEmitter_6kfsg"]
-mode_2d = true
-
-[sub_resource type="VisualShaderNodeParticleMultiplyByAxisAngle" id="VisualShaderNodeParticleMultiplyByAxisAngle_7i504"]
-default_input_values = [1, Vector3(0, 0, 1), 2, 0.0]
-degrees_mode = false
-
-[sub_resource type="VisualShaderNodeVec2Constant" id="VisualShaderNodeVec2Constant_dbgqc"]
-constant = Vector2(10, 0)
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_54gle"]
-default_input_values = [0, 90.0, 1, 0.0]
-
-[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_86kau"]
-default_input_values = [0, -90.0]
-function = 27
-
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_3y52v"]
-default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
-op_type = 0
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ad6oy"]
-input_name = "transform"
-
-[sub_resource type="VisualShaderNodeTransformDecompose" id="VisualShaderNodeTransformDecompose_t4kvr"]
-
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_d5cjj"]
-operator = 1
-
-[sub_resource type="VisualShaderNodeVec3Constant" id="VisualShaderNodeVec3Constant_5pv13"]
-constant = Vector3(960, 540, 0)
-
-[sub_resource type="VisualShaderNodeVec3Constant" id="VisualShaderNodeVec3Constant_dbxhq"]
-
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_mvm88"]
-parameter_name = "Radius"
-default_value_enabled = true
-default_value = 48.0
-
-[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_x02gn"]
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_xv04n"]
-input_name = "delta"
-
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_stnbn"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_r8s3d"]
 parameter_name = "Accel"
 default_value_enabled = true
+default_value = 2.0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2sf3t"]
+input_name = "delta"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_lw4i6"]
+
+[sub_resource type="VisualShaderNodeParticleAccelerator" id="VisualShaderNodeParticleAccelerator_8ppnn"]
+default_input_values = [0, Vector3(1, 1, 1), 1, 0.0, 2, Vector3(0, 0, 0)]
+mode = 1
+
+[sub_resource type="VisualShaderNodeParticleRingEmitter" id="VisualShaderNodeParticleRingEmitter_67lyr"]
+mode_2d = true
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_cwptq"]
+parameter_name = "Radius"
+default_value_enabled = true
+default_value = 20.0
+
+[sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_hdbjm"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_xnuyg"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_rdqus"]
+parameter_name = "InitialVelocity"
+default_value_enabled = true
+default_value = 10.0
 
 [resource]
 code = "shader_type particles;
-uniform float Radius = 48;
+uniform float InitialVelocity = 10;
+uniform float Radius = 20;
+uniform float Accel = 2;
 
 
 float __rand_from_seed(inout uint seed) {
@@ -134,8 +113,8 @@ void start() {
 	uint __seed = __hash(NUMBER + uint(1) + RANDOM_SEED);
 
 	{
-// Vector3Constant:29
-		vec3 n_out29p0 = vec3(0.000000, 0.000000, 0.000000);
+// FloatParameter:6
+		float n_out6p0 = InitialVelocity;
 
 
 // FloatParameter:3
@@ -147,46 +126,16 @@ void start() {
 		vec2 n_out2p0 = __get_random_point_on_ring2d(__seed, n_out3p0, n_out3p0);
 
 
-// Input:25
-		mat4 n_out25p0 = TRANSFORM;
+// VectorFunc:4
+		vec3 n_out4p0 = normalize(vec3(n_out2p0, 0.0));
 
 
-// TransformDecompose:26
-		vec3 n_out26p0 = n_out25p0[0].xyz;
-		vec3 n_out26p1 = n_out25p0[1].xyz;
-		vec3 n_out26p2 = n_out25p0[2].xyz;
-		vec3 n_out26p3 = n_out25p0[3].xyz;
-
-
-// Vector3Constant:28
-		vec3 n_out28p0 = vec3(960.000000, 540.000000, 0.000000);
-
-
-// VectorOp:27
-		vec3 n_out27p0 = n_out26p3 - n_out28p0;
-
-
-// VectorDecompose:30
-		float n_out30p0 = n_out27p0.x;
-		float n_out30p1 = n_out27p0.y;
-		float n_out30p2 = n_out27p0.z;
-
-
-// Vector3Constant:19
-		vec3 n_out19p0 = vec3(0.000000, 0.000000, 1.000000);
-
-
-// VectorDecompose:17
-		float n_out17p0 = n_out2p0.x;
-		float n_out17p1 = n_out2p0.y;
-
-
-// FloatOp:16
-		float n_out16p0 = atan(n_out17p0, n_out17p1);
+// VectorOp:5
+		vec3 n_out5p0 = vec3(n_out6p0) * n_out4p0;
 
 
 // StartOutput:0
-		VELOCITY = n_out29p0;
+		VELOCITY = n_out5p0;
 		if (RESTART_POSITION) {
 			TRANSFORM = mat4(vec4(1.0, 0.0, 0.0, 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), vec4(vec3(n_out2p0, 0.0), 1.0));
 			if (RESTART_VELOCITY) {
@@ -194,57 +143,84 @@ void start() {
 			}
 			TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
 		}
-		TRANSFORM *= __build_rotation_mat4(n_out19p0, n_out16p0);
-		TRANSFORM *= mat4(vec4(n_out30p1, 0, 0, 0), vec4(0, n_out30p1, 0, 0), vec4(0, 0, n_out30p1, 0), vec4(0, 0, 0, 1));
+
+
+	}
+}
+
+void process() {
+	uint __seed = __hash(NUMBER + uint(1) + RANDOM_SEED);
+
+	{
+// Input:2
+		vec3 n_out2p0 = VELOCITY;
+
+
+// FloatParameter:4
+		float n_out4p0 = Accel;
+
+
+// Input:5
+		float n_out5p0 = DELTA;
+
+
+// FloatOp:10
+		float n_out10p0 = n_out4p0 * n_out5p0;
+
+
+		vec3 n_out9p0;
+// ParticleAccelerator:9
+		float n_in9p1 = 0.00000;
+		vec3 n_in9p2 = vec3(0.00000, 0.00000, 0.00000);
+		{
+			vec3 __diff = TRANSFORM[3].xyz - EMISSION_TRANSFORM[3].xyz;
+			vec3 __ndiff = normalize(__diff);
+
+			n_out9p0 = length(__diff) > 0.0 ? __ndiff * vec3(n_out10p0) * mix(1.0, __rand_from_seed(__seed), n_in9p1) : vec3(0.0);
+		}
+
+
+// VectorOp:8
+		vec3 n_out8p0 = n_out2p0 + n_out9p0;
+
+
+// ProcessOutput:0
+		VELOCITY = n_out8p0;
 
 
 	}
 }
 
 "
-graph_offset = Vector2(4.24255, 2.04166)
+graph_offset = Vector2(-379.875, -115.971)
 mode = 2
 flags/collision_use_scale = false
 flags/disable_force = false
 flags/disable_velocity = false
 flags/keep_data = false
-nodes/start/0/position = Vector2(260, 140)
-nodes/start/2/node = SubResource("VisualShaderNodeParticleRingEmitter_6kfsg")
-nodes/start/2/position = Vector2(-1020, 220)
-nodes/start/3/node = SubResource("VisualShaderNodeFloatParameter_mvm88")
-nodes/start/3/position = Vector2(-1320, 220)
-nodes/start/7/node = SubResource("VisualShaderNodeInput_xv04n")
-nodes/start/7/position = Vector2(-680, 80)
-nodes/start/8/node = SubResource("VisualShaderNodeFloatParameter_stnbn")
-nodes/start/8/position = Vector2(-680, -140)
-nodes/start/15/node = SubResource("VisualShaderNodeInput_ewlqv")
-nodes/start/15/position = Vector2(-480, 160)
-nodes/start/16/node = SubResource("VisualShaderNodeFloatOp_sk0fq")
-nodes/start/16/position = Vector2(-580, 380)
-nodes/start/17/node = SubResource("VisualShaderNodeVectorDecompose_cmwc1")
-nodes/start/17/position = Vector2(-820, 340)
-nodes/start/19/node = SubResource("VisualShaderNodeVec3Constant_ayan3")
-nodes/start/19/position = Vector2(-480, 620)
-nodes/start/20/node = SubResource("VisualShaderNodeParticleMultiplyByAxisAngle_7i504")
-nodes/start/20/position = Vector2(-40, 20)
-nodes/start/21/node = SubResource("VisualShaderNodeVec2Constant_dbgqc")
-nodes/start/21/position = Vector2(-260, -20)
-nodes/start/22/node = SubResource("VisualShaderNodeFloatOp_54gle")
-nodes/start/22/position = Vector2(-380, 380)
-nodes/start/23/node = SubResource("VisualShaderNodeFloatFunc_86kau")
-nodes/start/23/position = Vector2(-600, 500)
-nodes/start/24/node = SubResource("VisualShaderNodeVectorOp_3y52v")
-nodes/start/24/position = Vector2(180, -20)
-nodes/start/25/node = SubResource("VisualShaderNodeInput_ad6oy")
-nodes/start/25/position = Vector2(466.307, 142.192)
-nodes/start/26/node = SubResource("VisualShaderNodeTransformDecompose_t4kvr")
-nodes/start/26/position = Vector2(701.762, 182.192)
-nodes/start/27/node = SubResource("VisualShaderNodeVectorOp_d5cjj")
-nodes/start/27/position = Vector2(756.871, 366.183)
-nodes/start/28/node = SubResource("VisualShaderNodeVec3Constant_5pv13")
-nodes/start/28/position = Vector2(260, 460)
-nodes/start/29/node = SubResource("VisualShaderNodeVec3Constant_dbxhq")
-nodes/start/29/position = Vector2(-80, 220)
-nodes/start/30/node = SubResource("VisualShaderNodeVectorDecompose_x02gn")
-nodes/start/30/position = Vector2(440, 300)
-nodes/start/connections = PackedInt32Array(3, 0, 2, 0, 3, 0, 2, 1, 21, 0, 20, 0, 19, 0, 0, 6, 19, 0, 20, 1, 2, 0, 17, 0, 17, 1, 16, 1, 17, 0, 16, 0, 16, 0, 0, 7, 16, 0, 22, 1, 23, 0, 22, 0, 22, 0, 20, 2, 20, 0, 24, 0, 25, 0, 26, 0, 26, 3, 27, 0, 28, 0, 27, 1, 2, 0, 0, 4, 29, 0, 0, 1, 27, 0, 30, 0, 30, 1, 0, 5)
+nodes/start/0/position = Vector2(800, 1000)
+nodes/start/2/node = SubResource("VisualShaderNodeParticleRingEmitter_67lyr")
+nodes/start/2/position = Vector2(200, 1200)
+nodes/start/3/node = SubResource("VisualShaderNodeFloatParameter_cwptq")
+nodes/start/3/position = Vector2(-100, 1200)
+nodes/start/4/node = SubResource("VisualShaderNodeVectorFunc_hdbjm")
+nodes/start/4/position = Vector2(400, 1000)
+nodes/start/5/node = SubResource("VisualShaderNodeVectorOp_xnuyg")
+nodes/start/5/position = Vector2(600, 1000)
+nodes/start/6/node = SubResource("VisualShaderNodeFloatParameter_rdqus")
+nodes/start/6/position = Vector2(300, 700)
+nodes/start/connections = PackedInt32Array(2, 0, 0, 4, 3, 0, 2, 0, 3, 0, 2, 1, 2, 0, 4, 0, 4, 0, 5, 1, 6, 0, 5, 0, 5, 0, 0, 1)
+nodes/process/0/position = Vector2(400, 200)
+nodes/process/2/node = SubResource("VisualShaderNodeInput_ae674")
+nodes/process/2/position = Vector2(-600, 200)
+nodes/process/4/node = SubResource("VisualShaderNodeFloatParameter_r8s3d")
+nodes/process/4/position = Vector2(-600, 300)
+nodes/process/5/node = SubResource("VisualShaderNodeInput_2sf3t")
+nodes/process/5/position = Vector2(-600, 600)
+nodes/process/8/node = SubResource("VisualShaderNodeVectorOp_lw4i6")
+nodes/process/8/position = Vector2(200, 200)
+nodes/process/9/node = SubResource("VisualShaderNodeParticleAccelerator_8ppnn")
+nodes/process/9/position = Vector2(-20, 400)
+nodes/process/10/node = SubResource("VisualShaderNodeFloatOp_jnq15")
+nodes/process/10/position = Vector2(-240, 460)
+nodes/process/connections = PackedInt32Array(2, 0, 8, 0, 8, 0, 0, 1, 9, 0, 8, 1, 5, 0, 10, 1, 4, 0, 10, 0, 10, 0, 9, 0)

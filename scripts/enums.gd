@@ -1,0 +1,4 @@
+class_name Enums
+
+enum MiniGame{JUST_CHATTING_TOPIC_SEARCH,SINGING_PRACTICE,GAME_SEARCH}
+enum Difficulty{EASY,NORMAL,HARD}

@@ -5,8 +5,6 @@ static var _instance:Game
 static var instance:Game:
 	get: return _instance
 
-enum MiniGame{JUST_CHATTING_TOPIC_SEARCH,SINGING_PRACTICE,GAME_SEARCH}
-
 var donation=0
 var just_chatting=0.0
 var singing=0.0
@@ -57,11 +55,11 @@ func open_mini_game(mini_game):
 
 func mini_game_end(mini_game):
 	return func(earn):
-		if mini_game==MiniGame.JUST_CHATTING_TOPIC_SEARCH:
+		if mini_game==Enums.MiniGame.JUST_CHATTING_TOPIC_SEARCH:
 			just_chatting+=earn
-		elif mini_game==MiniGame.SINGING_PRACTICE:
+		elif mini_game==Enums.MiniGame.SINGING_PRACTICE:
 			singing+=earn
-		elif mini_game==MiniGame.GAME_SEARCH:
+		elif mini_game==Enums.MiniGame.GAME_SEARCH:
 			game+=earn
 		print("%f %f %f %f"%[just_chatting,singing,game,earn])
 		add_hour(mini_game_hour)

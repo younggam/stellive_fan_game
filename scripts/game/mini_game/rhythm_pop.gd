@@ -28,12 +28,12 @@ var countdown
 signal end(score:float)
 
 func start(difficulty):
-	end.connect(Game.instance.mini_game_end(Game.MiniGame.JUST_CHATTING_TOPIC_SEARCH))
+	end.connect(Game.instance.mini_game_end(Enums.MiniGame.JUST_CHATTING_TOPIC_SEARCH))
 	$GiveUp.pressed.connect(on_give_up)
-	if difficulty==MiniGame.Difficulty.EASY:
+	if difficulty==Enums.Difficulty.EASY:
 		mul=easy_mul
 		max_count=easy_count
-	elif difficulty==MiniGame.Difficulty.HARD:
+	elif difficulty==Enums.Difficulty.HARD:
 		mul=hard_mul
 		max_count=hard_count
 	else:
