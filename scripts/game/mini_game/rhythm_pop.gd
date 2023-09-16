@@ -11,6 +11,7 @@ var note_scene=preload("res://scenes/game/note.tscn")
 @export var hard_mul:float
 
 @export var base_interval:float
+@export var base_earn:float=2
 
 var mul=1.0
 var successed=0
@@ -74,12 +75,12 @@ func _process(delta):
 	if current_preset==null:
 		current_preset=presets.pick_random()
 		preset_current_index=0
-		count+=1
 		return
 
 	var note=note_scene.instantiate()
 	note.initialize(current_preset.texts[preset_current_index],current_preset.keys[preset_current_index])
 	note.pop.connect(on_pop)
+	count+=1
 
 	var pick_slot=get_node("VBoxContainer/GridContainer/%d"%randi_range(0,63))
 	while pick_slot.get_child_count()>0:
@@ -91,10 +92,10 @@ func _process(delta):
 	
 	preset_current_index+=1
 	
-	if preset_current_index>=current_preset.texts.size():
+	if preset_current_index>=current_preset.texts.size()||count>=max_count:
 		current_preset=null
 		if count>=max_count:
-			stop()
+			stop(false)
 		else:
 			wait+=base_interval*mul
 
@@ -104,11 +105,16 @@ func on_pop(result):
 	else:
 		failed+=1
 	
-	$VBoxContainer/Label.text="Score: %.1f%%"%(100*successed/float(successed+failed))
+	$VBoxContainer/Label.text="Score: %.1f%%(%.1f%%)"%[100*get_score(),100*successed/float(successed+failed)]
 
-func stop():
-	end.emit(2*successed/float(max_count)/mul)
+func stop(give_up):
+	play=false
+	await get_tree().create_timer(0 if give_up else 3).timeout
+	end.emit(base_earn*get_score()/mul)
 	queue_free()
 
 func on_give_up():
-	stop()
+	stop(true)
+
+func get_score():
+	return successed/float(max_count)

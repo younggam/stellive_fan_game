@@ -17,9 +17,9 @@ mouse_filter = 0
 texture = ExtResource("1_n4qsi")
 script = ExtResource("2_in8nt")
 presets = Array[Resource("res://scripts/game/mini_game/notes_preset.gd")]([ExtResource("3_fonf3"), ExtResource("4_u2so2")])
-easy_count = 30
-normal_count = 45
-hard_count = 60
+easy_count = 144
+normal_count = 198
+hard_count = 252
 easy_mul = 2.0
 hard_mul = 0.5
 base_interval = 1.0
@@ -41,7 +41,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_qh18v")
-text = "Score: 0.0%"
+text = "Score: 0.0%(0.0%)"
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2

@@ -78,6 +78,11 @@ end_cap_mode = 2
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Control"]
 z_index = 2
+emitting = false
+amount = 32
 process_material = ExtResource("4_lrhk3")
 texture = ExtResource("5_0iq0c")
+lifetime = 0.2
+one_shot = true
 explosiveness = 1.0
+randomness = 0.2

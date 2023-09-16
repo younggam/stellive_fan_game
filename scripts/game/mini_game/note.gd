@@ -62,4 +62,6 @@ func _shortcut_input(event):
 
 func on_pop(result):
 	pop.emit(result)
+	if result:
+		$Control/GPUParticles2D.restart()
 	key_stack[key].pop_front()
