@@ -12,8 +12,12 @@ func _physics_process(delta):
 	if target==null:
 		return
 
+	$Line2D.global_position=target
+	$Line2D.visible=true
+
 	var magnitude=minf(speed*delta,position.distance_to(target))
 	if is_zero_approx(magnitude):
 		target=null
+		$Line2D.visible=false
 	else:
 		move_and_collide(position.direction_to(target)*magnitude)

@@ -17,6 +17,15 @@ script = ExtResource("2_4h1m7")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(3.464, -2, 4, 2.08165e-12, 3.464, 2, 2, 3.464, 2.08165e-12, 4, -2, 3.464, -3.464, 2, -4, 2.08165e-12, -3.464, -2, -2, -3.464, 2.08165e-12, -4, 2, -3.464, 3.464, -2, -3.464, -2, 2.08165e-12, 4, 3.464, -2)
+width = 0.5
+default_color = Color(0, 1, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_a3xks")
 

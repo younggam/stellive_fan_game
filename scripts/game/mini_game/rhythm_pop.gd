@@ -97,7 +97,7 @@ func _process(delta):
 		if count>=max_count:
 			stop(false)
 		else:
-			wait+=base_interval*mul
+			wait+=base_interval
 
 func on_pop(result):
 	if result:
