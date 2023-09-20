@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ds3xphacketkb"]
+
+[ext_resource type="Shader" uid="uid://c4f66b083e8fv" path="res://materials/pop.tres" id="1_tps4o"]
+
+[resource]
+shader = ExtResource("1_tps4o")
+shader_parameter/MinInitialVelocity = 576.0
+shader_parameter/MaxInitialVelocity = 288.0
+shader_parameter/Radius = 48.0
+shader_parameter/Accel = -48.0
+shader_parameter/LifetimeRandomness = 0.25

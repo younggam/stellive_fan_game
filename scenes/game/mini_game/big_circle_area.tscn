@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cffp467ili6iw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xur51"]
+radius = 128.0
+
+[node name="BigCircleArea" type="ShapeCast2D"]
+shape = SubResource("CircleShape2D_xur51")
+target_position = Vector2(0, 0)
+max_results = 1
+collision_mask = 4
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0, 0, 0.333333)
+polygon = PackedVector2Array(128, 0, 123.64, 33.128, 110.848, 64, 90.512, 90.512, 64, 110.848, 33.128, 123.64, 0, 128, -33.128, 123.64, -64, 110.848, -90.512, 90.512, -110.848, 64, -123.64, 33.128, -128, 0, -123.64, -33.128, -110.848, -64, -90.512, -90.512, -64, -110.848, -33.128, -123.64, 0, -128, 33.128, -123.64, 64, -110.848, 90.512, -90.512, 110.848, -64, 123.64, -33.128)

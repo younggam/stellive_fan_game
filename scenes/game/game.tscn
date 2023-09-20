@@ -163,20 +163,7 @@ texture = ExtResource("6_vywvk")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/JustChattingTopicSearch"]
 polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
 
-[node name="SingingPractice" type="StaticBody2D" parent="Map"]
-input_pickable = true
-physics_material_override = ExtResource("4_7bb7x")
-script = ExtResource("8_312yr")
-mini_game = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="Map/SingingPractice"]
-texture = ExtResource("6_vywvk")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/SingingPractice"]
-polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
-
 [node name="GameSearch" type="StaticBody2D" parent="Map"]
-position = Vector2(512, 0)
 input_pickable = true
 physics_material_override = ExtResource("4_7bb7x")
 script = ExtResource("8_312yr")
@@ -186,6 +173,19 @@ mini_game = 2
 texture = ExtResource("6_vywvk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/GameSearch"]
+polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
+
+[node name="SingingPractice" type="StaticBody2D" parent="Map"]
+position = Vector2(512, 0)
+input_pickable = true
+physics_material_override = ExtResource("4_7bb7x")
+script = ExtResource("8_312yr")
+mini_game = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/SingingPractice"]
+texture = ExtResource("6_vywvk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/SingingPractice"]
 polygon = PackedVector2Array(64, 0, 0, 32, -64, 0, 0, -32)
 
 [node name="FanCafe" type="StaticBody2D" parent="Map"]

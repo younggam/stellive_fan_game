@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/game/mini_game/note.gd" id="1_kyarn"]
 [ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="1_x0odd"]
 [ext_resource type="Texture2D" uid="uid://b172b3onyey2r" path="res://textures/mini_game/w.png" id="2_bkkua"]
-[ext_resource type="Material" uid="uid://dic0qmr7a8ewl" path="res://materials/pop.tres" id="4_40k06"]
+[ext_resource type="Material" uid="uid://ds3xphacketkb" path="res://materials/pop_material.tres" id="4_lrhk3"]
 [ext_resource type="Texture2D" uid="uid://c5li01kjfkdsn" path="res://textures/player.png" id="5_0iq0c"]
 
 [node name="Note" type="Control"]
@@ -80,7 +80,7 @@ end_cap_mode = 2
 z_index = 2
 emitting = false
 amount = 32
-process_material = ExtResource("4_40k06")
+process_material = ExtResource("4_lrhk3")
 texture = ExtResource("5_0iq0c")
 lifetime = 0.2
 one_shot = true

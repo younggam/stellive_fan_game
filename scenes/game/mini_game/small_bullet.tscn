@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://kiwsaby5qbf5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8m7k"]
+radius = 8.0
+
+[node name="SmallBullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m8m7k")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(8, 0, 7.727, 2.071, 6.928, 4, 5.657, 5.657, 4, 6.928, 2.071, 7.727, 0, 8, -2.07, 7.727, -4, 6.928, -5.657, 5.657, -6.928, 4, -7.727, 2.071, -8, 0, -7.727, -2.07, -6.928, -4, -5.657, -5.657, -4, -6.928, -2.07, -7.727, 0, -8, 2.071, -7.727, 4, -6.928, 5.657, -5.657, 6.928, -4, 7.727, -2.07)
