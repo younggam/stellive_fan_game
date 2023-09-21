@@ -33,11 +33,15 @@ func _process(delta):
 	if enabled:
 		if time>=delay+lifetime:
 			queue_free()
-		return
+			return
+		var collisions=collision_result
+		if collisions.size()>0 and get_collider(collisions[0])!=null:
+			get_collider(collisions[0]).collide()
 	enabled=true
 	$Line2D.default_color.a=1
 
-func initialize(pos,rot,vel):
+func initialize(pos,rot,vel,mul):
 	position=pos
-	velocity=vel
+	velocity=vel*mul
 	rotation=rot
+	delay/=mul

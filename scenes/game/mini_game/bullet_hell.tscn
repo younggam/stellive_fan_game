@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3lvxjvamynnk"]
+[gd_scene load_steps=9 format=3 uid="uid://d3lvxjvamynnk"]
 
 [ext_resource type="Texture2D" uid="uid://jgqsm2o8yepr" path="res://textures/mini_game/background.png" id="1_afwyu"]
 [ext_resource type="Script" path="res://scripts/game/mini_game/bullet_hell.gd" id="2_dyswb"]
 [ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="2_q5gfk"]
+[ext_resource type="Resource" uid="uid://c6g5xwkp5ul38" path="res://bullets_presets/spread.tres" id="3_07wav"]
 [ext_resource type="PhysicsMaterial" uid="uid://mvlsr18hilpx" path="res://materials/physics/entity.tres" id="3_lah55"]
 [ext_resource type="Script" path="res://scripts/game/mini_game/player.gd" id="4_e073t"]
 [ext_resource type="Texture2D" uid="uid://c5li01kjfkdsn" path="res://textures/player.png" id="5_q6r1n"]
@@ -20,6 +21,12 @@ grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("1_afwyu")
 script = ExtResource("2_dyswb")
+presets = Array[Resource("res://scripts/game/mini_game/bullets_preset.gd")]([ExtResource("3_07wav")])
+time_cap = 150.0
+time_penalty = 30.0
+easy_mul = 0.5
+hard_mul = 1.0
+base_interval = 2.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -38,7 +45,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_q5gfk")
-text = "Score: 0.0%(0.0%)"
+text = "Score: 0.0%(0.0s/0s)"
 
 [node name="Panel" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(896, 896)

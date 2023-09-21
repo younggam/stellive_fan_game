@@ -1,11 +1,21 @@
 extends TextureRect
 
-var laser=preload("res://scenes/game/mini_game/laser.tscn")
+var bullet_preset_map={
+	Enums.BulletType.LASER:preload("res://scenes/game/mini_game/laser.tscn"),
+	Enums.BulletType.SMALL_BULLET:preload("res://scenes/game/mini_game/small_bullet.tscn"),
+	Enums.BulletType.MEDIUM_BULLET:preload("res://scenes/game/mini_game/medium_bullet.tscn"),
+	Enums.BulletType.BIG_BULLET:preload("res://scenes/game/mini_game/big_bullet.tscn"),
+	Enums.BulletType.SHORT_RECTANGLE_AREA:preload("res://scenes/game/mini_game/short_rectangle_area.tscn"),
+	Enums.BulletType.MEDIUM_RECTANGLE_AREA:preload("res://scenes/game/mini_game/medium_rectangle_area.tscn"),
+	Enums.BulletType.LONG_RECTANGLE_AREA:preload("res://scenes/game/mini_game/long_rectangle_area.tscn"),
+	Enums.BulletType.SMALL_CIRCLE_AREA:preload("res://scenes/game/mini_game/small_circle_area.tscn"),
+	Enums.BulletType.MEDIUM_CIRCLE_AREA:preload("res://scenes/game/mini_game/medium_circle_area.tscn"),
+	Enums.BulletType.BIG_CIRCLE_AREA:preload("res://scenes/game/mini_game/big_circle_area.tscn"),
+}
 
-#@export var presets:Array[NotesPreset]
-@export var easy_count:int
-@export var normal_count:int
-@export var hard_count:int
+@export var presets:Array[BulletsPreset]
+@export var time_cap:float
+@export var time_penalty:float
 
 @export var easy_mul:float
 @export var hard_mul:float
@@ -14,15 +24,15 @@ var laser=preload("res://scenes/game/mini_game/laser.tscn")
 @export var base_earn:float=2
 
 var mul=1.0
-#var successed=0
-#var failed=0
+var time=0.0
+var failed=0
 var wait=4
 
 var count=0
 var max_count
 
-#var preset_current_index=0
-#var current_preset=null
+var preset_current_index=0
+var current_preset=null
 var play=false
 var countdown
 
@@ -30,19 +40,16 @@ signal end(score:float)
 
 func start(difficulty):
 	end.connect(Game.instance.mini_game_end(Enums.MiniGame.GAME_SEARCH))
+	$Player.collided.connect(on_collided)
 	$GiveUp.pressed.connect(on_give_up)
 	if difficulty==Enums.Difficulty.EASY:
 		mul=easy_mul
-		max_count=easy_count
 	elif difficulty==Enums.Difficulty.HARD:
 		mul=hard_mul
-		max_count=hard_count
-	else:
-		max_count=normal_count
-#	successed=0
-#	failed=0
+	time=0.0
+	failed=0
 	wait=4
-#	preset_current_index=0
+	preset_current_index=0
 	play=true
 	$Label.text="3"
 	countdown=3
@@ -51,6 +58,10 @@ func start(difficulty):
 func _process(delta):
 	if !play:
 		return
+	
+	if countdown<0:
+		time+=delta
+		$VBoxContainer/Label.text="Score: %.1f%%(%.1fs/%.0fs)"%[100*get_score(),time+failed*time_penalty,time_cap]
 
 	if wait>0:
 		wait-=delta
@@ -72,38 +83,39 @@ func _process(delta):
 			$Label.scale=Vector2(scale,scale)
 		return
 	
-#	if current_preset==null:
-#		current_preset=presets.pick_random()
-#		preset_current_index=0
-#		return
-#
-#	var note=note_scene.instantiate()
-#	note.initialize(current_preset.texts[preset_current_index],current_preset.keys[preset_current_index])
-#	note.pop.connect(on_pop)
-	count+=1
-	
-#	if preset_current_index<current_preset.intervals.size():
-#		wait+=current_preset.intervals[preset_current_index]*mul
-#
-#	preset_current_index+=1
-#
-#	if preset_current_index>=current_preset.texts.size()||count>=max_count:
-#		current_preset=null
-#		if count>=max_count:
-#			stop(false)
-#		else:
-#			wait+=base_interval
+	if current_preset==null:
+		current_preset=presets.pick_random()
+		preset_current_index=0
+		count+=1
+		return
 
-#func on_pop(result):
-#	if result:
-#		successed+=1
-#	else:
-#		failed+=1
-#
-#	$VBoxContainer/Label.text="Score: %.1f%%(%.1f%%)"%[100*get_score(),100*successed/float(successed+failed)]
+	var bullet=bullet_preset_map[current_preset.type].instantiate()
+	var pos=current_preset.positions[preset_current_index]
+	var randomness=current_preset.randomnesses[preset_current_index]*0.5
+	var rot=current_preset.rotations[preset_current_index]
+	pos+=$Player.position if current_preset.relative else $VBoxContainer/Panel.size*0.5
+	bullet.initialize(pos,randf_range(rot*(1-randomness),rot*(1+randomness)),current_preset.velocitys[preset_current_index],mul)
+	$VBoxContainer/Panel.add_child(bullet)
+	
+	if preset_current_index<current_preset.intervals.size():
+		wait+=current_preset.intervals[preset_current_index]*mul
+
+	preset_current_index+=1
+
+	if preset_current_index>=current_preset.positions.size():
+		current_preset=null
+		wait+=base_interval
+
+	if time+failed*time_penalty>time_cap:
+		stop(false)
+
+func on_collided():
+	failed+=1
 
 func stop(give_up):
 	play=false
+	for child in $VBoxContainer/Panel.get_children():
+		child.queue_free()
 	await get_tree().create_timer(0 if give_up else 3).timeout
 	end.emit(base_earn*get_score()/mul)
 	queue_free()
@@ -112,5 +124,4 @@ func on_give_up():
 	stop(true)
 
 func get_score():
-#	return successed/float(max_count)
-	return 0
+	return time/time_cap

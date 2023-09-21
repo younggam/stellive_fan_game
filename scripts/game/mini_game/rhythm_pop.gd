@@ -109,7 +109,7 @@ func on_pop(result):
 
 func stop(give_up):
 	play=false
-	await get_tree().create_timer(0 if give_up else 3).timeout
+	await get_tree().create_timer(0 if give_up else 4).timeout
 	end.emit(base_earn*get_score()/mul)
 	queue_free()
 
