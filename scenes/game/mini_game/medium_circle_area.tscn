@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://rnw1hsvw3d7q"]
+[gd_scene load_steps=3 format=3 uid="uid://rnw1hsvw3d7q"]
+
+[ext_resource type="Script" path="res://scripts/game/mini_game/delayed_area.gd" id="1_q0d4f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xur51"]
 radius = 64.0
@@ -8,6 +10,7 @@ shape = SubResource("CircleShape2D_xur51")
 target_position = Vector2(0, 0)
 max_results = 1
 collision_mask = 4
+script = ExtResource("1_q0d4f")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(1, 0, 0, 0.333333)

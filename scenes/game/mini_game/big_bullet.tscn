@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bp6dmne0ucueb"]
+[gd_scene load_steps=3 format=3 uid="uid://bp6dmne0ucueb"]
+
+[ext_resource type="Script" path="res://scripts/game/mini_game/bullet.gd" id="1_88426"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m8m7k"]
 radius = 32.0
@@ -6,6 +8,7 @@ radius = 32.0
 [node name="BigBullet" type="Area2D"]
 collision_layer = 8
 collision_mask = 4
+script = ExtResource("1_88426")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_m8m7k")

@@ -1,6 +1,6 @@
 extends TextureRect
 
-#var note_scene=preload("res://scenes/game/mini_game/note.tscn")
+var laser=preload("res://scenes/game/mini_game/laser.tscn")
 
 #@export var presets:Array[NotesPreset]
 @export var easy_count:int
@@ -109,9 +109,7 @@ func stop(give_up):
 	queue_free()
 
 func on_give_up():
-	$VBoxContainer/Panel.add_child(preload("res://scenes/game/mini_game/laser.tscn").instantiate())
-	$VBoxContainer/Panel/Laser.initialize(Vector2(120,120),deg_to_rad(45),Vector2.ZERO)
-	stop(false)
+	stop(true)
 
 func get_score():
 #	return successed/float(max_count)

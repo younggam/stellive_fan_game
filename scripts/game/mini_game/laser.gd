@@ -17,7 +17,7 @@ func _ready():
 func _process(delta):
 	time+=delta
 	if time<delay:
-		$Line2D.default_color.a=lerpf(min_alpha,max_alpha,$Line2D.default_color.a)
+		$Line2D.default_color.a=lerpf(min_alpha,max_alpha,time/delay)
 		return
 	
 	if enabled:
@@ -26,6 +26,7 @@ func _process(delta):
 		return
 	enabled=true
 	$Line2D.default_color.a=1
+	$Line2D.width*=2
 
 func initialize(pos,rot,vel):
 	var dir=Vector2.from_angle(rot)
@@ -42,7 +43,6 @@ func initialize(pos,rot,vel):
 
 	var t1=(size.x-pos.x)/dir.x
 	y=pos.y+t1*dir.y
-	print("%f %f %f %f %f %f"%[size.x,pos.x,dir.x,pos.x/dir.x,t1,y])
 	if y>=0 and y<=size.y:
 		temp=Vector2(size.x,y)
 		update_laser(valid,temp)

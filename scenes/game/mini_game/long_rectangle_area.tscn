@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://5b0776ga4wmd"]
+[gd_scene load_steps=3 format=3 uid="uid://5b0776ga4wmd"]
+
+[ext_resource type="Script" path="res://scripts/game/mini_game/delayed_area.gd" id="1_1fp2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kcy5d"]
 size = Vector2(16, 16)
@@ -8,6 +10,7 @@ shape = SubResource("RectangleShape2D_kcy5d")
 target_position = Vector2(0, 240)
 max_results = 1
 collision_mask = 4
+script = ExtResource("1_1fp2b")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(1, 0, 0, 0.333333)
