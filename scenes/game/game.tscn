@@ -430,12 +430,14 @@ texture_progress = ExtResource("13_rswqt")
 [node name="Shortcut" type="Label" parent="CanvasLayer/OverlayUI/Skills/R"]
 layout_mode = 0
 offset_left = 24.0
+offset_top = 12.0
 offset_right = 64.0
-offset_bottom = 48.0
+offset_bottom = 60.0
 theme = ExtResource("9_mk6le")
 theme_type_variation = &"HeaderSmall"
 text = "R"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WallHealthBar" type="ProgressBar" parent="CanvasLayer/OverlayUI"]
 layout_mode = 1

@@ -1,12 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3lvxjvamynnk"]
+[gd_scene load_steps=18 format=3 uid="uid://d3lvxjvamynnk"]
 
 [ext_resource type="Texture2D" uid="uid://jgqsm2o8yepr" path="res://textures/mini_game/background.png" id="1_afwyu"]
 [ext_resource type="Script" path="res://scripts/game/mini_game/bullet_hell.gd" id="2_dyswb"]
 [ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="2_q5gfk"]
 [ext_resource type="Resource" uid="uid://c6g5xwkp5ul38" path="res://bullets_presets/spread.tres" id="3_07wav"]
 [ext_resource type="PhysicsMaterial" uid="uid://mvlsr18hilpx" path="res://materials/physics/entity.tres" id="3_lah55"]
+[ext_resource type="Resource" uid="uid://b85430eivxg2c" path="res://bullets_presets/small_hacking.tres" id="4_c6uqp"]
 [ext_resource type="Script" path="res://scripts/game/mini_game/player.gd" id="4_e073t"]
+[ext_resource type="Texture2D" uid="uid://b172b3onyey2r" path="res://textures/mini_game/w.png" id="5_h0evc"]
 [ext_resource type="Texture2D" uid="uid://c5li01kjfkdsn" path="res://textures/player.png" id="5_q6r1n"]
+[ext_resource type="Texture2D" uid="uid://dtuwf7ln6d564" path="res://textures/mini_game/a.png" id="6_6tnej"]
+[ext_resource type="Texture2D" uid="uid://deq2c4fklpfno" path="res://textures/mini_game/s.png" id="7_7ht1u"]
+[ext_resource type="Texture2D" uid="uid://cctkwhbunuks0" path="res://textures/mini_game/d.png" id="8_rgdui"]
+[ext_resource type="Texture2D" uid="uid://6hadsi4uqy4k" path="res://textures/mini_game/up.png" id="9_iqes4"]
+[ext_resource type="Texture2D" uid="uid://bs6xxfs1eqrow" path="res://textures/mini_game/left.png" id="10_b6hs7"]
+[ext_resource type="Texture2D" uid="uid://b5ua1hnxcs6r5" path="res://textures/mini_game/down.png" id="11_neqx2"]
+[ext_resource type="Texture2D" uid="uid://bw70iqueb3olm" path="res://textures/mini_game/right.png" id="12_5pl5v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kbbvt"]
 radius = 8.0
@@ -21,7 +30,7 @@ grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("1_afwyu")
 script = ExtResource("2_dyswb")
-presets = Array[Resource("res://scripts/game/mini_game/bullets_preset.gd")]([ExtResource("3_07wav")])
+presets = Array[Resource("res://scripts/game/mini_game/bullets_preset.gd")]([ExtResource("3_07wav"), ExtResource("4_c6uqp")])
 time_cap = 150.0
 time_penalty = 30.0
 easy_mul = 0.5
@@ -91,6 +100,80 @@ grow_horizontal = 0
 grow_vertical = 2
 theme = ExtResource("2_q5gfk")
 text = "Give up"
+
+[node name="LeftControl" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1488.0
+offset_top = 402.0
+offset_right = 1600.0
+offset_bottom = 474.0
+
+[node name="W" type="TextureRect" parent="LeftControl"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 72.0
+offset_bottom = 32.0
+texture = ExtResource("5_h0evc")
+
+[node name="A" type="TextureRect" parent="LeftControl"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 32.0
+offset_bottom = 72.0
+texture = ExtResource("6_6tnej")
+
+[node name="S" type="TextureRect" parent="LeftControl"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 72.0
+offset_bottom = 72.0
+texture = ExtResource("7_7ht1u")
+
+[node name="D" type="TextureRect" parent="LeftControl"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 40.0
+offset_right = 112.0
+offset_bottom = 72.0
+texture = ExtResource("8_rgdui")
+
+[node name="RightControl" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1600.0
+offset_top = 402.0
+offset_right = 1712.0
+offset_bottom = 474.0
+
+[node name="Up" type="TextureRect" parent="RightControl"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 72.0
+offset_bottom = 32.0
+texture = ExtResource("9_iqes4")
+
+[node name="Left" type="TextureRect" parent="RightControl"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 32.0
+offset_bottom = 72.0
+texture = ExtResource("10_b6hs7")
+
+[node name="Down" type="TextureRect" parent="RightControl"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 72.0
+offset_bottom = 72.0
+texture = ExtResource("11_neqx2")
+
+[node name="Right" type="TextureRect" parent="RightControl"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 40.0
+offset_right = 112.0
+offset_bottom = 72.0
+texture = ExtResource("12_5pl5v")
 
 [node name="Player" type="RigidBody2D" parent="."]
 position = Vector2(960, 540)

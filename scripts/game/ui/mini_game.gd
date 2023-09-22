@@ -3,7 +3,7 @@ extends VBoxContainer
 static var mini_game_scene_map={
 	Enums.MiniGame.JUST_CHATTING_TOPIC_SEARCH:preload("res://scenes/game/mini_game/rhythm_pop.tscn"),
 	Enums.MiniGame.GAME_SEARCH:preload("res://scenes/game/mini_game/bullet_hell.tscn"),
-	Enums.MiniGame.SINGING_PRACTICE:preload("res://scenes/game/mini_game/rhythm_pop.tscn")
+	Enums.MiniGame.SINGING_PRACTICE:preload("res://scenes/game/mini_game/rhythm_move.tscn")
 }
 
 static var mini_game_title_map={

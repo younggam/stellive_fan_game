@@ -1,0 +1,198 @@
+[gd_scene load_steps=16 format=3 uid="uid://bq2s0tomdxj2k"]
+
+[ext_resource type="Texture2D" uid="uid://jgqsm2o8yepr" path="res://textures/mini_game/background.png" id="1_tbs2q"]
+[ext_resource type="Script" path="res://scripts/game/mini_game/rhythm_move.gd" id="2_y1vlx"]
+[ext_resource type="Resource" uid="uid://k27wnduvh2dn" path="res://notes_presets/lemon.tres" id="3_2hk33"]
+[ext_resource type="Resource" uid="uid://db1y47tjcrf3g" path="res://notes_presets/sichi.tres" id="4_5glnh"]
+[ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="5_8o7yl"]
+[ext_resource type="Texture2D" uid="uid://b172b3onyey2r" path="res://textures/mini_game/w.png" id="6_dw3v1"]
+[ext_resource type="Texture2D" uid="uid://dtuwf7ln6d564" path="res://textures/mini_game/a.png" id="7_1nco1"]
+[ext_resource type="Texture2D" uid="uid://deq2c4fklpfno" path="res://textures/mini_game/s.png" id="8_ypnns"]
+[ext_resource type="Texture2D" uid="uid://cctkwhbunuks0" path="res://textures/mini_game/d.png" id="9_d3fqq"]
+[ext_resource type="Texture2D" uid="uid://6hadsi4uqy4k" path="res://textures/mini_game/up.png" id="10_rog7w"]
+[ext_resource type="Texture2D" uid="uid://bs6xxfs1eqrow" path="res://textures/mini_game/left.png" id="11_d53hm"]
+[ext_resource type="Texture2D" uid="uid://b5ua1hnxcs6r5" path="res://textures/mini_game/down.png" id="12_ush6l"]
+[ext_resource type="Texture2D" uid="uid://bw70iqueb3olm" path="res://textures/mini_game/right.png" id="13_wd1yw"]
+[ext_resource type="Texture2D" uid="uid://blu6pb5d3wjf5" path="res://textures/empty.png" id="14_m2a8v"]
+
+[sub_resource type="TileSet" id="TileSet_1j5yl"]
+tile_size = Vector2i(32, 32)
+
+[node name="RhythmMove" type="TextureRect"]
+process_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("1_tbs2q")
+script = ExtResource("2_y1vlx")
+presets = Array[Resource("res://scripts/game/mini_game/notes_preset.gd")]([ExtResource("3_2hk33"), ExtResource("4_5glnh")])
+easy_count = 96
+normal_count = 168
+hard_count = 252
+easy_spawn_count = 18
+normal_spawn_count = 32
+hard_spawn_count = 50
+easy_mul = 0.5
+hard_mul = 2.0
+base_interval = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_8o7yl")
+text = "Score: 0.0%(0.0%)"
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(960, 960)
+layout_mode = 2
+
+[node name="TileMap" type="TileMap" parent="VBoxContainer/Control"]
+position = Vector2(-480, -86)
+tile_set = SubResource("TileSet_1j5yl")
+format = 2
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(360, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.5
+offset_top = -89.0
+offset_right = 36.5
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(180, 90)
+theme = ExtResource("5_8o7yl")
+theme_type_variation = &"HeaderLarge"
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GiveUp" type="Button" parent="."]
+process_mode = 3
+custom_minimum_size = Vector2(240, 60)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -30.0
+offset_right = -200.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("5_8o7yl")
+text = "Give up"
+
+[node name="LeftControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1488.0
+offset_top = 432.0
+offset_right = 1600.0
+offset_bottom = 504.0
+
+[node name="W" type="TextureRect" parent="LeftControl"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 72.0
+offset_bottom = 32.0
+texture = ExtResource("6_dw3v1")
+
+[node name="A" type="TextureRect" parent="LeftControl"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 32.0
+offset_bottom = 72.0
+texture = ExtResource("7_1nco1")
+
+[node name="S" type="TextureRect" parent="LeftControl"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 72.0
+offset_bottom = 72.0
+texture = ExtResource("8_ypnns")
+
+[node name="D" type="TextureRect" parent="LeftControl"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 40.0
+offset_right = 112.0
+offset_bottom = 72.0
+texture = ExtResource("9_d3fqq")
+
+[node name="RightControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1600.0
+offset_top = 432.0
+offset_right = 1712.0
+offset_bottom = 504.0
+
+[node name="Up" type="TextureRect" parent="RightControl"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 72.0
+offset_bottom = 32.0
+texture = ExtResource("10_rog7w")
+
+[node name="Left" type="TextureRect" parent="RightControl"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 32.0
+offset_bottom = 72.0
+texture = ExtResource("11_d53hm")
+
+[node name="Down" type="TextureRect" parent="RightControl"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 72.0
+offset_bottom = 72.0
+texture = ExtResource("12_ush6l")
+
+[node name="Right" type="TextureRect" parent="RightControl"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 40.0
+offset_right = 112.0
+offset_bottom = 72.0
+texture = ExtResource("13_wd1yw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 124.0
+offset_right = 352.0
+offset_bottom = 956.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_top = 764.0
+offset_right = 64.0
+offset_bottom = 772.0
+texture = ExtResource("14_m2a8v")

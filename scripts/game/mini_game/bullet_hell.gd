@@ -93,8 +93,8 @@ func _process(delta):
 	var pos=current_preset.positions[preset_current_index]
 	var randomness=current_preset.randomnesses[preset_current_index]*0.5
 	var rot=current_preset.rotations[preset_current_index]
-	pos+=$Player.position if current_preset.relative else $VBoxContainer/Panel.size*0.5
-	bullet.initialize(pos,randf_range(rot*(1-randomness),rot*(1+randomness)),current_preset.velocitys[preset_current_index],mul)
+	pos+=$Player.global_position-$VBoxContainer/Panel.global_position if current_preset.relative else $VBoxContainer/Panel.size*0.5
+	bullet.initialize(pos,randf_range(rot-360*randomness,rot+360*randomness),current_preset.velocitys[preset_current_index],mul)
 	$VBoxContainer/Panel.add_child(bullet)
 	
 	if preset_current_index<current_preset.intervals.size():
@@ -104,7 +104,7 @@ func _process(delta):
 
 	if preset_current_index>=current_preset.positions.size():
 		current_preset=null
-		wait+=base_interval
+		wait+=base_interval/mul
 
 	if time+failed*time_penalty>time_cap:
 		stop(false)

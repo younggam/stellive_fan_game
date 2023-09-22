@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BulletsPreset" load_steps=2 format=3 uid="uid://b85430eivxg2c"]
+
+[ext_resource type="Script" path="res://scripts/game/mini_game/bullets_preset.gd" id="1_ja83o"]
+
+[resource]
+script = ExtResource("1_ja83o")
+type = 4
+positions = Array[Vector2]([Vector2(92.729, 24.846), Vector2(24.846, 92.729), Vector2(-67.883, 67.883), Vector2(-92.728, -24.846), Vector2(-24.846, -92.728), Vector2(67.883, -67.883)])
+relative = true
+rotations = Array[float]([15.0, 75.0, 135.0, 195.0, 255.0, 315.0])
+velocitys = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+intervals = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+randomnesses = Array[float]([0.5, 0.5, 0.5, 0.5, 0.5, 0.5])

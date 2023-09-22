@@ -23,16 +23,18 @@ func _process(delta):
 	if enabled:
 		if time>=delay+lifetime:
 			queue_free()
-			return
-		var collider=get_collider()
-		if collider!=null:
-			collider.collide()
+		return
 	enabled=true
 	$Line2D.default_color.a=1
 	$Line2D.width*=2
 
+func _physics_process(delta):
+	var collider=get_collider()
+	if collider!=null:
+		collider.collide()
+
 func initialize(pos,rot,vel,mul):
-	var dir=Vector2.from_angle(rot)
+	var dir=Vector2.from_angle(deg_to_rad(rot))
 	delay/=mul
 	var size=get_parent().size
 	var valid=0

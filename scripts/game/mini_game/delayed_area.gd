@@ -11,7 +11,7 @@ var velocity=Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	enabled=false
-	$Line2D.default_color.a=min_alpha
+	$Polygon2D.color.a=min_alpha
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,18 +27,20 @@ func _process(delta):
 			position.y=clampf(position.y,0,size.y)
 			velocity.y=0
 			
-		$Line2D.default_color.a=lerpf(min_alpha,max_alpha,$Line2D.default_color.a)
+		$Polygon2D.color.a=lerpf(min_alpha,max_alpha,time/delay)
 		return
 	
 	if enabled:
 		if time>=delay+lifetime:
 			queue_free()
-			return
-		var collisions=collision_result
-		if collisions.size()>0 and get_collider(collisions[0])!=null:
-			get_collider(collisions[0]).collide()
+		return
 	enabled=true
-	$Line2D.default_color.a=1
+	$Polygon2D.color.a=1
+
+func _physics_process(delta):
+	var collider=get_collider(0)
+	if collider!=null:
+		collider.collide()
 
 func initialize(pos,rot,vel,mul):
 	position=pos
