@@ -116,7 +116,7 @@ func stop(give_up):
 	play=false
 	for child in $VBoxContainer/Panel.get_children():
 		child.queue_free()
-	await get_tree().create_timer(0 if give_up else 3).timeout
+	await get_tree().create_timer(0 if give_up else 3,false).timeout
 	end.emit(base_earn*get_score()/mul)
 	queue_free()
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bq2s0tomdxj2k"]
+[gd_scene load_steps=20 format=3 uid="uid://bq2s0tomdxj2k"]
 
 [ext_resource type="Texture2D" uid="uid://jgqsm2o8yepr" path="res://textures/mini_game/background.png" id="1_tbs2q"]
 [ext_resource type="Script" path="res://scripts/game/mini_game/rhythm_move.gd" id="2_y1vlx"]
 [ext_resource type="Resource" uid="uid://k27wnduvh2dn" path="res://notes_presets/lemon.tres" id="3_2hk33"]
 [ext_resource type="Resource" uid="uid://db1y47tjcrf3g" path="res://notes_presets/sichi.tres" id="4_5glnh"]
 [ext_resource type="Theme" uid="uid://ch7lejvfn7g0a" path="res://themes/general_ui.tres" id="5_8o7yl"]
+[ext_resource type="Texture2D" uid="uid://dowtl74b3tffi" path="res://textures/mini_game/rhythm_move_tiles.png" id="6_853aj"]
 [ext_resource type="Texture2D" uid="uid://b172b3onyey2r" path="res://textures/mini_game/w.png" id="6_dw3v1"]
 [ext_resource type="Texture2D" uid="uid://dtuwf7ln6d564" path="res://textures/mini_game/a.png" id="7_1nco1"]
 [ext_resource type="Texture2D" uid="uid://deq2c4fklpfno" path="res://textures/mini_game/s.png" id="8_ypnns"]
@@ -14,9 +15,20 @@
 [ext_resource type="Texture2D" uid="uid://b5ua1hnxcs6r5" path="res://textures/mini_game/down.png" id="12_ush6l"]
 [ext_resource type="Texture2D" uid="uid://bw70iqueb3olm" path="res://textures/mini_game/right.png" id="13_wd1yw"]
 [ext_resource type="Texture2D" uid="uid://blu6pb5d3wjf5" path="res://textures/empty.png" id="14_m2a8v"]
+[ext_resource type="Material" uid="uid://ds3xphacketkb" path="res://materials/pop_material.tres" id="16_8wip8"]
+[ext_resource type="Texture2D" uid="uid://c5li01kjfkdsn" path="res://textures/player.png" id="17_1vj4o"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ows00"]
+texture = ExtResource("6_853aj")
+texture_region_size = Vector2i(32, 32)
+use_texture_padding = false
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_1j5yl"]
 tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_ows00")
 
 [node name="RhythmMove" type="TextureRect"]
 process_mode = 1
@@ -30,11 +42,14 @@ texture = ExtResource("1_tbs2q")
 script = ExtResource("2_y1vlx")
 presets = Array[Resource("res://scripts/game/mini_game/notes_preset.gd")]([ExtResource("3_2hk33"), ExtResource("4_5glnh")])
 easy_count = 96
-normal_count = 168
+normal_count = 158
 hard_count = 252
 easy_spawn_count = 18
 normal_spawn_count = 32
 hard_spawn_count = 50
+easy_map_size = 18
+normal_map_size = 24
+hard_map_size = 30
 easy_mul = 0.5
 hard_mul = 2.0
 base_interval = 1.0
@@ -56,16 +71,24 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_8o7yl")
-text = "Score: 0.0%(0.0%)"
+text = "Score: 0.0%(0/0)"
 
 [node name="Control" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(960, 960)
 layout_mode = 2
 
 [node name="TileMap" type="TileMap" parent="VBoxContainer/Control"]
-position = Vector2(-480, -86)
+position = Vector2(480, 480)
 tile_set = SubResource("TileSet_1j5yl")
 format = 2
+
+[node name="Player" type="TextureRect" parent="VBoxContainer/Control"]
+layout_mode = 0
+offset_left = 482.0
+offset_top = 482.0
+offset_right = 510.0
+offset_bottom = 510.0
+texture = ExtResource("17_1vj4o")
 
 [node name="Label" type="Label" parent="."]
 custom_minimum_size = Vector2(360, 180)
@@ -196,3 +219,25 @@ offset_top = 764.0
 offset_right = 64.0
 offset_bottom = 772.0
 texture = ExtResource("14_m2a8v")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 768.0
+offset_right = 200.0
+offset_bottom = 832.0
+theme = ExtResource("5_8o7yl")
+text = "0"
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Panel"]
+z_index = 2
+position = Vector2(32, 768)
+emitting = false
+amount = 32
+process_material = ExtResource("16_8wip8")
+texture = ExtResource("17_1vj4o")
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
